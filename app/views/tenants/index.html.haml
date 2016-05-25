@@ -1,8 +1,15 @@
 .page-header
   %h1 Жильцы
-=render 'menu'
-
+.btn-toolbar
+  =link_to new_tenant_path, class: 'btn btn-primary' do
+    =fa_icon 'plus'
+    Добавить
 .list-group
   -@tenants.each do |tenant|
-    = link_to tenant.get_person.lastname, tenant, class: 'list-group-item'
+    =link_to tenant, class: 'list-group-item' do
+      .row
+        .col-md-8
+          =tenant.arrivaldate
+          .text-muted
+            =tenant.checkoutdate
 =paginate @tenants

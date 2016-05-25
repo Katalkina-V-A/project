@@ -18,7 +18,7 @@ class TenantsControllerTest < ActionController::TestCase
 
   test "should create tenant" do
     assert_difference('Tenant.count') do
-      post :create, tenant: { arrivaldate: @tenant.arrivaldate, checkoutdate: @tenant.checkoutdate, note: @tenant.note, phone: @tenant.phone, security: @tenant.security }
+      post :create, tenant: { arrivaldate: @tenant.arrivaldate, checkout: @tenant.checkout, note: @tenant.note, phone: @tenant.phone, resident_id: @tenant.resident_id, resident_type: @tenant.resident_type, security: @tenant.security }
     end
 
     assert_redirected_to tenant_path(assigns(:tenant))
@@ -35,7 +35,7 @@ class TenantsControllerTest < ActionController::TestCase
   end
 
   test "should update tenant" do
-    patch :update, id: @tenant, tenant: { arrivaldate: @tenant.arrivaldate, checkoutdate: @tenant.checkoutdate, note: @tenant.note, phone: @tenant.phone, security: @tenant.security }
+    patch :update, id: @tenant, tenant: { arrivaldate: @tenant.arrivaldate, checkout: @tenant.checkout, note: @tenant.note, phone: @tenant.phone, resident_id: @tenant.resident_id, resident_type: @tenant.resident_type, security: @tenant.security }
     assert_redirected_to tenant_path(assigns(:tenant))
   end
 

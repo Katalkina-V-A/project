@@ -1,18 +1,65 @@
-.field
-  = label_tag :faculty, Student.human_attribute_name(:faculty)
-  = number_field_tag 'tenant[student_attributes][faculty]', @tenant.student.faculty
-.field
-  = label_tag :typegroup, Student.human_attribute_name(:typegroup)
-  = number_field_tag 'tenant[student_attributes][typegroup]', @tenant.student.typegroup
-.field
-  = label_tag :group, Student.human_attribute_name(:group)
-  = text_field_tag 'tenant[student_attributes][group]', @tenant.student.group
-.field
-  = label_tag :course, Student.human_attribute_name(:course)
-  = number_field_tag 'tenant[student_attributes][course]', @tenant.student.course
-.field
-  = label_tag :reseptdate, Student.human_attribute_name(:reseptdate)
-  = text_field_tag 'tenant[student_attributes][reseptdate]', @tenant.student.reseptdate
-.field
-  = label_tag :expirationdate, Student.human_attribute_name(:expirationdate)
-  = text_field_tag 'tenant[student_attributes][expirationdate]', @tenant.student.expirationdate
+= form_for @tenant do |f|
+  = error_messages_for @tenant
+  = f.fields_for :student do |s|
+    .row
+      .col-md-4
+        .form-group
+          =s.label :faculty
+          =s.select :faculty, [['','']] + Student::FACULTIES, {}, class: 'form-control'
+    = s.fields_for :person do |fp|
+      .row
+        .col-md-4
+          .form-group
+            = fp.label :lastname
+            = fp.text_field :lastname, class: 'form-control'
+        .col-md-4
+          .form-group
+            = fp.label :firstname
+            = fp.text_field :firstname, class: 'form-control'
+        .col-md-4
+          .form-group
+            = fp.label :secondname
+            = fp.text_field :secondname, class: 'form-control'
+      .row
+        .col-md-4
+          .form-group
+            = fp.label :birthday
+            = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}
+        .col-md-4
+          .form-group
+            = fp.label :sex
+            = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+      = f.label :security
+      = f.check_box :security, class: 'checkbox'
+  .row
+    .col-md-4
+      .form-group
+      = f.label :phone
+      = f.text_field :phone, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+      = f.label :arrivaldate
+      .input-group.date.datepicker
+        = f.text_field :arrivaldate, class: 'form-control'
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
+
+    .col-md-4
+      .form-group
+      = f.label :checkoutdate
+      .input-group.date.datepicker
+        = f.text_field :checkoutdate, class: 'form-control'
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
+  .row
+    .col-md-4
+      .form-group
+      = f.label :note
+      = f.text_area :note, class: 'form-control'
+
+  .form-actions
+    = f.submit 'Save', class: 'btn btn-primary'

@@ -1,13 +1,12 @@
 class CreateTenants < ActiveRecord::Migration
   def change
     create_table :tenants do |t|
-      t.references :resident, polymorphic: true, index: true, null: false
       t.boolean :security
       t.string :phone
       t.date :arrivaldate
       t.date :checkoutdate
       t.text :note
-
+      t.references :resident, polymorphic: true, index: true, null: false
 
       t.timestamps null: false
     end

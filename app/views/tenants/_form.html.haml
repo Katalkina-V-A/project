@@ -1,13 +1,43 @@
-= form_for @tenant do |f|
+= form_for @tenant, data: {url: stt_tenants_path()} do |f|
   = error_messages_for @tenant
   .row
     .col-md-4
       .form-group
         = label_tag('select_type') do
           Выберите тип жителя
-        = select_tenant_type()
-  #tenant_type_fields
-    Пусто
+        = select_tag('tenant_type', options_for_select([['', '']] + Tenant::TENANTSTYPE, ''),id: :tenant_type_select)
+#tenant_type_fields
+= form_for @tenant do |f|
+  = error_messages_for @tenant
+  = f.fields_for :student do |s|
+    .row
+      .col-md-4
+        .form-group
+          =s.label :faculty
+          =s.select :faculty, [['','']] + Student::FACULTIES, {}, class: 'form-control'
+    = s.fields_for :person do |fp|
+      .row
+        .col-md-4
+          .form-group
+            = fp.label :lastname
+            = fp.text_field :lastname, class: 'form-control'
+        .col-md-4
+          .form-group
+            = fp.label :firstname
+            = fp.text_field :firstname, class: 'form-control'
+        .col-md-4
+          .form-group
+            = fp.label :secondname
+            = fp.text_field :secondname, class: 'form-control'
+      .row
+        .col-md-4
+          .form-group
+            = fp.label :birthday
+            = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}
+        .col-md-4
+          .form-group
+            = fp.label :sex
+            = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
   .row
     .col-md-4
       .form-group
@@ -41,5 +71,14 @@
       = f.text_area :note, class: 'form-control'
 
   .form-actions
-    = f.submit nil, class: 'btn btn-primary'
-  .field
+    = f.submit 'Save', class: 'btn btn-primary'
+
+-# = form_for @tenant, data: {url: stt_tenants_path()} do |f|
+-#   = error_messages_for @tenant
+-#   .row
+-#     .col-md-4
+-#       .form-group
+-#         = label_tag('select_type') do
+-#           Выберите тип жителя
+-#         = select_tag('tenant_type', options_for_select([['', '']] + Tenant::TENANTSTYPE, ''),id: :tenant_type_select)
+-# #tenant_type_fields

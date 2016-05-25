@@ -23,8 +23,6 @@ $(document).ready selectactive
 $(document).on 'page:load', selectactive
 
 
-$(document).on 'page:restore', ->
-  $("#loader").modal('hide')
 dtpick = ->
   $('.datepicker').datetimepicker({locale: 'ru', format: 'DD.MM.YYYY'})
   false

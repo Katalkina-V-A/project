@@ -223,13 +223,13 @@ ActiveRecord::Schema.define(version: 20160524153942) do
   add_index "students", ["person_id"], name: "index_students_on_person_id", using: :btree
 
   create_table "tenants", force: :cascade do |t|
-    t.integer  "resident_id",   null: false
-    t.string   "resident_type", null: false
     t.boolean  "security"
     t.string   "phone"
     t.date     "arrivaldate"
     t.date     "checkoutdate"
     t.text     "note"
+    t.integer  "resident_id",   null: false
+    t.string   "resident_type", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

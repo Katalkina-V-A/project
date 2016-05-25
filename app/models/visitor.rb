@@ -2,6 +2,7 @@ class Visitor < ActiveRecord::Base
   belongs_to :person
   validates_presence_of :person
   accepts_nested_attributes_for :person
+
   has_many :visitortenants
   has_many :tenants, through: :visitortenants
   DOCUMENTS = [['Паспорт',0], ['Водительское удостоверение',1], ['Пропуск',2], ['Студенческий билет',3]]
