@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Security:
+  = @tenant.security
+%p
+  %b Phone:
+  = @tenant.phone
+%p
+  %b Arrivaldate:
+  = @tenant.arrivaldate
+%p
+  %b Checkoutdate:
+  = @tenant.checkoutdate
+%p
+  %b Note:
+  = @tenant.note
+
+= link_to 'Edit', edit_tenant_path(@tenant)
+\|
+= link_to 'Back', tenants_path

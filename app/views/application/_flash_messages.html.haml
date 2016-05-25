@@ -1,0 +1,4 @@
+-flash.each do |key,msg|
+  .alert{class: "alert-#{key}"}=msg
+-# -flash.each do |key,val|
+-#   .growl-msg{data: {type: key.to_s=='notice' ? 'success' : key}}=val

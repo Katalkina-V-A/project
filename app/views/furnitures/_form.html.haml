@@ -1,0 +1,27 @@
+= form_for @furniture do |f|
+  =error_messages_for @furniture
+  .row
+    .col-md-6
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+  .row
+    .col-md-2
+      .form-group
+        = f.label :quantity
+        .input-group
+          = f.text_field :quantity, class: 'form-control'
+          %span.input-group-addon шт
+    .col-md-2
+      .form-group
+        = f.label :size
+        .input-group
+          = f.text_field :size, class: 'form-control', data: {masked: 'size'}
+          %span.input-group-addon (см)
+  .row
+    .col-md-6
+      .form-group
+        = f.label :note
+        = f.text_area :note, class: 'form-control'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

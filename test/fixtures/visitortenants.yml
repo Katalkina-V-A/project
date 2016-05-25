@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tenant_id: 
+  visitor_id: 
+  arrivaldate: 2016-05-24
+  arrivaltime: 2016-05-24 18:39:42
+  leavetime: 2016-05-24 18:39:42
+  note: MyText
+
+two:
+  tenant_id: 
+  visitor_id: 
+  arrivaldate: 2016-05-24
+  arrivaltime: 2016-05-24 18:39:42
+  leavetime: 2016-05-24 18:39:42
+  note: MyText

@@ -1,0 +1,9 @@
+.field
+  = label_tag :placejob, Workman.human_attribute_name(:placejob)
+  = text_field_tag 'tenant[workman_attributes][placejob]', @tenant.workman.placejob
+.field
+  = label_tag :post, Workman.human_attribute_name(:post)
+  = text_field_tag 'tenant[workman_attributes][post]', @tenant.workman.post
+.field
+  = label_tag :phone, Workman.human_attribute_name(:phone)
+  = text_field_tag 'tenant[workman_attributes][phone]', @tenant.workman.phone

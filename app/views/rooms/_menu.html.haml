@@ -1,0 +1,10 @@
+.btn-toolbar
+  =link_to edit_room_path(@room), class: 'btn btn-primary' do
+    =fa_icon 'edit'
+    Редактировать
+  =link_to @room, data: {method: :delete, confirm: t('helpers.sure')}, class: 'btn btn-danger' do
+    =fa_icon 'trash'
+    Удалить
+  =link_to add_path, class: 'btn btn-primary' do
+    =fa_icon 'plus'
+    Добавить мебель

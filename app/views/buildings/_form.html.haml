@@ -1,0 +1,41 @@
+= form_for @building do |f|
+  =error_messages_for @building
+  .row
+    .col-md-8
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control'
+  .row
+    .col-md-8
+      .form-group
+        = f.label :address
+        = f.text_field :address, class: 'form-control'
+  .row
+    .col-md-2
+      .form-group
+        = f.label :numb
+        = f.text_field :numb, class: 'form-control'
+    .col-md-2
+      .form-group
+        = f.label :floor
+        = f.text_field :floor, class: 'form-control'
+    .col-md-2
+      .form-group
+        = f.label :quantityroom
+        = f.text_field :quantityroom, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = f.label :typebuild
+        = f.select :typebuild, [['','']]+Building::TYPEBUILDS, {}, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :state
+        = f.select :state,[['','']]+Building::STATES, {}, class: 'form-control'
+  .row
+    .col-md-8
+      .form-group
+        = f.label :note
+        = f.text_area :note, class: 'form-control'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

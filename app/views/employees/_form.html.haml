@@ -1,0 +1,29 @@
+= form_for @employee do |f|
+  =error_messages_for @employee
+  = f.fields_for :person do |fp|
+    .row
+      .col-md-4
+        .form-group
+          = fp.label :lastname
+          = fp.text_field :lastname, class: 'form-control'
+      .col-md-4
+        .form-group
+          = fp.label :firstname
+          = fp.text_field :firstname, class: 'form-control'
+    .row
+      .col-md-4
+        .form-group
+          = fp.label :secondname
+          = fp.text_field :secondname, class: 'form-control'
+    .row
+      .col-md-4
+        .form-group
+          = fp.label :birthday
+          = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@employee.person.birthday) if @employee.person.birthday)
+    .row
+      .col-md-4
+        .form-group
+          = fp.label :sex
+          = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

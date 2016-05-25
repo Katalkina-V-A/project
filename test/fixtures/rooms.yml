@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  building_id: 
+  numb: 1
+  floor: 1
+  section: 1
+  place: 1
+  typeroom: 1
+  state: 1
+  fire: false
+  signal: false
+  samospas: false
+  accesssory: 1
+  accessoryfaculty: 1
+  note: MyText
+
+two:
+  building_id: 
+  numb: 1
+  floor: 1
+  section: 1
+  place: 1
+  typeroom: 1
+  state: 1
+  fire: false
+  signal: false
+  samospas: false
+  accesssory: 1
+  accessoryfaculty: 1
+  note: MyText

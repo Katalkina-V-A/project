@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address: MyString
+  numb: 1
+  typebuild: 1
+  floor: 1
+  state: 1
+  place: 1
+  note: MyText
+
+two:
+  name: MyString
+  address: MyString
+  numb: 1
+  typebuild: 1
+  floor: 1
+  state: 1
+  place: 1
+  note: MyText

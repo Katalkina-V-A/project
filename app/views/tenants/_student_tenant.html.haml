@@ -1,0 +1,18 @@
+.field
+  = label_tag :faculty, Student.human_attribute_name(:faculty)
+  = number_field_tag 'tenant[student_attributes][faculty]', @tenant.student.faculty
+.field
+  = label_tag :typegroup, Student.human_attribute_name(:typegroup)
+  = number_field_tag 'tenant[student_attributes][typegroup]', @tenant.student.typegroup
+.field
+  = label_tag :group, Student.human_attribute_name(:group)
+  = text_field_tag 'tenant[student_attributes][group]', @tenant.student.group
+.field
+  = label_tag :course, Student.human_attribute_name(:course)
+  = number_field_tag 'tenant[student_attributes][course]', @tenant.student.course
+.field
+  = label_tag :reseptdate, Student.human_attribute_name(:reseptdate)
+  = text_field_tag 'tenant[student_attributes][reseptdate]', @tenant.student.reseptdate
+.field
+  = label_tag :expirationdate, Student.human_attribute_name(:expirationdate)
+  = text_field_tag 'tenant[student_attributes][expirationdate]', @tenant.student.expirationdate

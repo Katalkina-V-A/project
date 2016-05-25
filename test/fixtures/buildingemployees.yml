@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee_id: 
+  building_id: 
+  post: MyString
+  cabinet: MyString
+  phone: MyString
+  startwork: 2016-05-24 17:05:47
+  endwork: 2016-05-24 17:05:47
+  note: MyText
+
+two:
+  employee_id: 
+  building_id: 
+  post: MyString
+  cabinet: MyString
+  phone: MyString
+  startwork: 2016-05-24 17:05:47
+  endwork: 2016-05-24 17:05:47
+  note: MyText

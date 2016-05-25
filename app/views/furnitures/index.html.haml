@@ -1,0 +1,17 @@
+.page-header
+  %h1 Мебель
+.btn-toolbar
+  =link_to new_furniture_path, class: 'btn btn-primary' do
+    =fa_icon 'plus'
+    Добавить
+.list-group
+  -@furnitures.each do |furniture|
+    =link_to furniture, class: 'list-group-item' do
+      .row
+        .col-md-8
+          =furniture.name
+        .col-md-4
+          .progress.progress-striped
+            .progress-bar{:style => "width: 20%;"}
+              %span.sr-only Доступно: 20/100
+=paginate @furnitures

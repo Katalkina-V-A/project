@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  security: false
+  phone: MyString
+  arrivaldate: 2016-05-24
+  checkoutdate: 2016-05-24
+  note: MyText
+
+two:
+  security: false
+  phone: MyString
+  arrivaldate: 2016-05-24
+  checkoutdate: 2016-05-24
+  note: MyText

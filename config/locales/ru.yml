@@ -1,0 +1,74 @@
+ru:
+  app:
+    name: Общежитие
+    company:
+      short_name: НИЯУ МИФИ
+      department: УИМООП
+  helpers:
+    sure: Вы уверены?
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+
+  views:
+    pagination:
+      first: ⇤
+      last: ⇥
+      previous: ←
+      next: →
+      truncate: …
+  activerecord:
+    models:
+      linen: Белье
+      furniture: Мебель
+      user: Пользователь
+      building: Корпус общежития
+      room: Квартира
+      furnitureinroom: Мебель в квартире
+    attributes:
+      user:
+        email: Пользовательское имя/электронная почта
+      furnitureinroom:
+        quantity: Количество
+        furniture_id: Наименование
+      linen:
+        name: Наименование
+        quantity: Количество
+        size: Размеры
+        note: Примечание
+      furniture:
+        name: Наименование
+        quantity: Количество
+        size: Размеры
+        note: Примечание
+      building:
+        name: Наименование
+        address: Адрес
+        numb: Номер корпуса
+        typebuild: Тип корпуса
+        floor: Число этажей
+        state: Состояние
+        note: Примечание
+        quantityroom: Число квартир
+        rooms: Квартиры
+      room:
+        building_id: Корпус
+        numb: Номер квартиры
+        floor: Этаж
+        section: Секция
+        place: Количество мест
+        typeroom: Тип квартиры
+        state: Состояние
+        fire: Наличие огнетушителя
+        signal: Наличие противопожарной сигнализации
+        samospas: Наличие самоспаса
+        accessory: Принадлежность комнаты
+        accessoryfaculty: Факультет
+        note: Примечание
+    errors:
+      models:
+        person:
+          attributes:
+            snils:
+              check_sum: имеет неправильную контрольную сумму

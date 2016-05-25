@@ -1,0 +1,23 @@
+.page-header
+  %h1
+    =@building.name
+  %span.text-muted
+    %h4
+      =@building.address
+      =surround ?(,?) do
+        =@building.numb if @building.numb
+=render 'menu'
+
+.row
+  .col-md-4
+    =Building.human_attribute_name(:floor)
+    =@building.floor
+
+-if @building.rooms.any?
+  %h3=Building.human_attribute_name(:rooms)
+  .list-group
+    -@building.rooms.each do |room|
+      =link_to room, class: 'list-group-item' do
+        =room.numb
+        .text-muted
+          =room.building_id

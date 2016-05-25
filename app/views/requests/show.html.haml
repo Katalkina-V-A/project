@@ -1,0 +1,9 @@
+.page-header
+  %h1 Заявка
+=render 'menu'
+.row
+  .col-md-8
+    = @request.employee.person.lastname
+.row
+  .col-md-8
+    = @request.content

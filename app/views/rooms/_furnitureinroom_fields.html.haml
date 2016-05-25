@@ -1,0 +1,12 @@
+.nested-fields
+  .row
+    =f.hidden_field :room_id, value: @room.id
+    =f.hidden_field :building_id, value: @room.building_id
+    .col-md-4
+      .form-group
+        = f.select :furniture_id, Furniture.ordering.map{|c| [c.name, c.id]}, {}, class: 'form-control'
+    .col-md-2
+      .form-group
+        = f.text_field :quantity, class: 'form-control'
+    .col-md-2
+      =link_to_remove_association "Удалить", f,class: 'btn btn-danger'

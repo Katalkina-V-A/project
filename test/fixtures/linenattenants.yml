@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tenant_id: 
+  building_id: 
+  linen_id: 
+  quantity: 1
+
+two:
+  tenant_id: 
+  building_id: 
+  linen_id: 
+  quantity: 1

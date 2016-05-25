@@ -1,0 +1,33 @@
+= form_for @request do |f|
+  =error_messages_for @request
+  .row
+    .col-md-8
+      .form-group
+        = f.label :employee_id
+        = f.select :employee_id, Employee.ordering.map{|e| [e.person.lastname, e.id]},
+        {}, class: 'form-control'
+  .row
+    .col-md-8
+      .form-group
+        = f.label :historymove
+        = f.text_field :historymove, class: 'form-control'
+  .row
+    .col-md-8
+      .form-group
+        = f.label :content
+        = f.text_area :content, class: 'form-control'
+  -# .row
+  -#   = f.label :dateapp
+  -#   = f.date_select :dateapp
+  -# .field
+  -#   = f.label :status
+  -#   = f.number_field :status
+  -#
+  -# .field
+  -#   = f.label :dateanswer
+  -#   = f.date_select :dateanswer
+  -# .field
+  -#   = f.label :answer
+  -#   = f.text_area :answer
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

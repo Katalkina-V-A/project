@@ -1,0 +1,16 @@
+.page-header
+  %h1
+    =@room.numb
+    %span.text-muted
+      =@room.building.name
+=render 'menu'
+
+.row
+  .col-md-4
+    =Room.human_attribute_name(:floor)
+    =@room.floor
+-if @room.furnitureinrooms
+  .list-group
+    -@room.furnitureinrooms.each do |furnitureinroom|
+      =link_to furnitureinroom.furniture, class: 'list-group-item' do
+        =furnitureinroom.furniture.name

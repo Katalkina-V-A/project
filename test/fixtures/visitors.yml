@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  person_id: 
+  document: 1
+  numb: MyString
+
+two:
+  person_id: 
+  document: 1
+  numb: MyString

@@ -1,0 +1,13 @@
+.page-header
+  %h1 Квартиры
+.btn-toolbar
+  =link_to new_room_path, class: 'btn btn-primary' do
+    =fa_icon 'plus'
+    Добавить
+.list-group
+  -@rooms.each do |room|
+    =link_to room, class: 'list-group-item' do
+      =room.numb
+      .text-muted
+        =room.building_id
+=paginate @rooms

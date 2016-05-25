@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tenant_id: 
+  room_id: 
+  datein: 2016-05-24
+  dateout: 2016-05-24
+  note: MyText
+
+two:
+  tenant_id: 
+  room_id: 
+  datein: 2016-05-24
+  dateout: 2016-05-24
+  note: MyText

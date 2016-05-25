@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee_id: 
+  historymove_id: 
+  content: MyText
+  status: 1
+  dateapp: 2016-05-24
+  dateanswer: 2016-05-24
+  answer: MyText
+
+two:
+  employee_id: 
+  historymove_id: 
+  content: MyText
+  status: 1
+  dateapp: 2016-05-24
+  dateanswer: 2016-05-24
+  answer: MyText
