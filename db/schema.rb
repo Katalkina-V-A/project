@@ -147,11 +147,11 @@ ActiveRecord::Schema.define(version: 20160524153942) do
   add_index "linens", ["building_id"], name: "index_linens_on_building_id", using: :btree
 
   create_table "people", force: :cascade do |t|
-    t.string   "lastname",   null: false
-    t.string   "firstname",  null: false
+    t.string   "lastname"
+    t.string   "firstname"
     t.string   "secondname"
-    t.date     "birthday",   null: false
-    t.integer  "sex",        null: false
+    t.date     "birthday"
+    t.integer  "sex"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

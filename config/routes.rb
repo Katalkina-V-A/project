@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tenant/index'
   resources :requests
   resources :employees
   resources :visitors
@@ -20,8 +21,7 @@ Rails.application.routes.draw do
       get :activate
     end
   end
-
-  resources :tenants do
+  resources :people do
     collection do
       get :select_tenants_type, as: :stt
     end

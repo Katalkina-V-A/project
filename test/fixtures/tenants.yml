@@ -4,7 +4,7 @@ one:
   security: false
   phone: MyString
   arrivaldate: 2016-05-25
-  checkout: 2016-05-25
+  checkoutdate: 2016-05-25
   note: MyText
   resident_id: 
   resident_type: Resident
@@ -13,7 +13,7 @@ two:
   security: false
   phone: MyString
   arrivaldate: 2016-05-25
-  checkout: 2016-05-25
+  checkoutdate: 2016-05-25
   note: MyText
   resident_id: 
   resident_type: Resident

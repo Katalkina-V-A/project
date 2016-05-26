@@ -1,0 +1,9 @@
+= form_for @person, data: {url: stt_people_path()} do |f|
+  = error_messages_for @person
+  .row
+    .col-md-4
+      .form-group
+        = label_tag('select_type') do
+          Выберите тип жителя
+        = select_tag('tenant_type', options_for_select([['', '']] + Tenant::TENANTSTYPE, ''),id: :tenant_type_select)
+#tenant_type_fields

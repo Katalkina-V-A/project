@@ -1,0 +1,15 @@
+.page-header
+  %h1 Жильцы
+.btn-toolbar
+  =link_to new_person_path, class: 'btn btn-primary' do
+    =fa_icon 'plus'
+    Добавить
+.list-group
+  -@tenants.each do |tenant|
+    =link_to tenant.resident.person, class: 'list-group-item' do
+      .row
+        .col-md-8
+          =tenant.resident.person.lastname
+          .text-muted
+            =tenant.resident.person.firstname
+=paginate @tenants
