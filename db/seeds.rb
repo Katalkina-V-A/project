@@ -5,10 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-u = User.create(email:  "victoria@localhost" , password:  "12345" , password_confirmation:  "12345" )
-u.activation_state =  "active"
-u.save
-
+a = User.create(email:  "admin" , password:  "12345" , password_confirmation:  "12345", role: 4 )
+t = User.create(email:  "tenant" , password:  "12345" , password_confirmation:  "12345", role: 0 )
+c = User.create(email:  "commandant" , password:  "12345" , password_confirmation:  "12345", role: 1 )
+m = User.create(email:  "matron" , password:  "12345" , password_confirmation:  "12345", role: 2 )
+s = User.create(email:  "security" , password:  "12345" , password_confirmation:  "12345", role: 3 )
+a.activation_state = "active"
+t.activation_state = "active"
+c.activation_state = "active"
+m.activation_state = "active"
+s.activation_state = "active"
+a.save
+t.save
+c.save
+m.save
+s.save
 
 Building.create(name: "Корпус 1", address:  "Москворечье 2к1" , typebuild: [0], floor: 24, state: 0, quantityroom: 400)
 Building.create(name: "Корпус 2", address:  "Москворечье 2к2" , typebuild:  [0] , floor:  24 , state:  0, quantityroom: 400)

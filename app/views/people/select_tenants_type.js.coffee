@@ -10,3 +10,4 @@ source = '<%=j render('relative_tenant') %>'
 <% end %>
 
 $('#tenant_type_fields').html(source)
+window.kin_changer()

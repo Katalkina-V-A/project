@@ -6,7 +6,9 @@
         = f.label :email
         = f.text_field :email, class: 'form-control'
         = f.error_messages_for(:email)
-    - if @user.new_record?
+
+  - if @user.new_record?
+    .row
       .col-md-4
         .form-group
           = f.label :password
@@ -17,5 +19,10 @@
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: 'form-control'
           = f.error_messages_for(:password_confirmation)
+  .row
+    .col-md-4
+      .form-group
+        =f.label :role
+        =f.select :role, User::ROLES.map.with_index{|name,i| [name,i]}, {},class: 'form-control'
   .form-actions
     = f.submit nil, class: 'btn btn-primary'

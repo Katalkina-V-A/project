@@ -14,20 +14,55 @@
     padding-top: 12px
     padding-bottom: 12px
   .sidebar-nav .navbar
-    width: 200px
+    width: 230px
     height: 100%
     position: fixed
     left: 0
     border-radius: 6px
+    .mut
+      text-align: center
+  .sidebar-nav .navbar .navbar-header .navbar-brand
+    height: 70px
+    width: 228px
+    margin-right: 2px
+    text-align: center
+    border-top-right-radius: 6px
+    color: $bg-color
+    transition: all 0.5s ease-in
+    &:hover, &:active, &:focus
+      background-color: $hover-bar
 
 .sidebar-nav .navbar
-  background-color: #5a9a7c
-  li a
-    color: #f3faf7
-    font-size: 18px
-    line-height: 25.7167px
+  background-color: $text-muted-nav
+  li
+    i
+      margin-right: 10px
+      margin-left: 10px
+    transition: all 0.5s ease-in
+    .mut
+      color: $hover-bar
+    &:hover, &:active
+      background-color: $hover-bar
+      .mut
+        color: $text-muted-nav
+    a
+      text-decoration: none
+      color: $bg-color
+      font-size: 18px
+      line-height: 25.7167px
+      &:hover, &:active, &:focus
+        color: $color-text
   .icon-bar
-    background-color: #f3faf7
+    background-color: $bg-color
   .navbar-brand
-    color: #f3faf7
-    line-height: 25.7167px
+    a
+      text-decoration: none
+      color: $bg-color
+      font-size: 22px
+      line-height: 25.7167px
+      &:hover, &:active, &:focus
+        color: $color-text
+  .navbar-toggle
+    transition: all 0.5s ease-in
+    &:hover, &:active
+      background-color: $hover-bar

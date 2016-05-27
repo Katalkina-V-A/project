@@ -1,4 +1,7 @@
 class VisitorsController < ApplicationController
+  before_action :check_level_six, only: [:index, :show]
+  before_action :check_level_seven, only: [:new, :create, :edit, :update]
+  before_action :check_admin, only: [:destroy]
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
 
   # GET /visitors

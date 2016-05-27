@@ -1,15 +1,19 @@
 .page-header
   %h1 Посетители
-.btn-toolbar
-  =link_to new_visitor_path, class: 'btn btn-primary' do
-    =fa_icon 'plus'
-    Добавить
-.list-group
-  -@visitors.each do |visitor|
-    =link_to visitor, class: 'list-group-item' do
-      .row
-        .col-md-8
-          =visitor.person.lastname
-          .text-muted
-            =visitor.person.firstname
-=paginate @visitors
+-if @current_user.try(:is_admin?) || @current_user.try(:is_security?)
+  .btn-toolbar
+    =link_to new_visitor_path, class: 'btn btn-primary' do
+      =fa_icon 'plus'
+      Добавить
+-if @visitors.blank?
+  .alert.alert-info Посетители не найдены
+-else
+  .list-group
+    -@visitors.each do |visitor|
+      =link_to visitor, class: 'list-group-item' do
+        .row
+          .col-md-8
+            =visitor.person.lastname
+            .text-muted
+              =visitor.person.firstname
+  =paginate @visitors

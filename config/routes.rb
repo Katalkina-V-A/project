@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'tenant/index'
+
+  get 'tenants' => 'tenant#index', as: :tenants
   resources :requests
   resources :employees
   resources :visitors
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   resources :people do
     collection do
       get :select_tenants_type, as: :stt
+      get :select_kin_type, as: :skt
     end
     member do
 

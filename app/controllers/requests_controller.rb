@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  before_action :check_level_five, only: [:update, :edit]
+  before_action :check_admin, only: [:destroy]
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   # GET /requests

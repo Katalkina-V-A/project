@@ -1,15 +1,19 @@
 .page-header
   %h1 Сотрудники
-.btn-toolbar
-  =link_to new_employee_path, class: 'btn btn-primary' do
-    =fa_icon 'plus'
-    Добавить
-.list-group
-  -@employees.each do |employee|
-    =link_to employee, class: 'list-group-item' do
-      .row
-        .col-md-8
-          =employee.person.lastname
-          .text-muted
-            =employee.person.firstname
-=paginate @employees
+-if @current_user.try(:is_admin?)
+  .btn-toolbar
+    =link_to new_employee_path, class: 'btn btn-primary' do
+      =fa_icon 'plus'
+      Добавить
+-if @employees.blank?
+  .alert.alert-info Сотрудников не найдено
+-else
+  .list-group
+    -@employees.each do |employee|
+      =link_to employee, class: 'list-group-item' do
+        .row
+          .col-md-8
+            =employee.person.lastname
+            .text-muted
+              =employee.person.firstname
+  =paginate @employees

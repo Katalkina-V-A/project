@@ -3,7 +3,8 @@
     =@employee.person.lastname
     =@employee.person.firstname
     =@employee.person.secondname
-=render 'menu'
+-if @current_user.try(:is_admin?)
+  =render 'menu'
 
 .row
   .col-md-4

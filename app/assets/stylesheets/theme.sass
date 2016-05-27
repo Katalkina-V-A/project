@@ -1,9 +1,21 @@
 $brand-primary: #3b5f76
 $brand-success: #367154
-$brand-danger: #cc312b
+$brand-danger: #b72c26
+// #cc312b
+$font-family-sans-serif: 'Open Sans', sans-serif
+$font-size-base: 16px
+//цвет навбара
+$text-muted-nav: #1a8679
+//фон и текст в навбаре
+$bg-color: #f3f8f8
+//цвет текста
+$color-text: #0a3530
+//наведение в навбаре
+$hover-bar: #5eaaa1
 
-@import bootstrap-sprockets
 @import bootstrap
+@import bootstrap-select
+@import bootstrap-datetimepicker
 @import font-awesome
 @import fonts
 @import main
@@ -16,5 +28,12 @@ $brand-danger: #cc312b
 .alert-notice
   @extend .alert-success
 
+.alert-alert
+  @extend .alert-info
+
 .btn-toolbar
   padding: $padding-large-vertical 0
+  margin-bottom: 10px
+
+.alert
+  margin-top: 20px

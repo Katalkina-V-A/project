@@ -1,5 +1,6 @@
 = form_for @room do |f|
   =error_messages_for @room
+  =hidden_field_tag :formname, :edit
   .row
     .col-md-8
       .form-group

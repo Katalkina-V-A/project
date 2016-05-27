@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_action :check_admin, except: [:show, :index]
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
 
   # GET /employees

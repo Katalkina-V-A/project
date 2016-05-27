@@ -16,9 +16,9 @@
 //= require jquery.maskedinput
 //= require bootstrap
 //= require bootstrap-growl.min
-//= require cocoon
 //= require moment
 //= require bootstrap-datetimepicker
 //= require moment/ru
 //= require bootstrap-select
+//= require cocoon
 //= require_tree .

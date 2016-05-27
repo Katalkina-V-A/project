@@ -3,7 +3,8 @@
     =@room.numb
     %span.text-muted
       =@room.building.name
-=render 'menu'
+-if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
+  =render 'menu'
 
 .row
   .col-md-4

@@ -5,5 +5,6 @@ class Workman < ActiveRecord::Base
   accepts_nested_attributes_for :tenant
 
   has_many :relatives, as: :kin
+
   validates :person_id, uniqueness: true
 end

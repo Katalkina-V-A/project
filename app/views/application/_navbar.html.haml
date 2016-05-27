@@ -6,80 +6,77 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %span.visible-xs.navbar-brand
-        = t('app.name')
+      %span.navbar-brand
+        .hidden-xs
+          =link_to root_path do
+            = image_tag 'mephi_logo_small_white.png', alt: t('app.company.short_name')
+        .visible-xs
+          =link_to root_path do
+            =t('app.name')
     .navbar-collapse.collapse.sidebar-navbar-collapse
       %ul.nav.navbar-nav
-        %li
-          =link_to 'Белье', linens_path
-        %li
-          =link_to 'Мебель', furnitures_path
-        -# %li.dropdown
-        -#   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        -#     Dropdown
-        -#     %b.caret
-        -#   %ul.dropdown-menu
-        -#     %li
-        -#       %a{:href => "#"} Action
-        -#     %li
-        -#       %a{:href => "#"} Another action
-        -#     %li
-        -#       %a{:href => "#"} Something else here
-        %li
-          =link_to 'Корпуса', buildings_path
-        %li
-          =link_to 'Квартира', rooms_path
-        %li
-          =link_to 'Жильцы', tenant_index_path
-        %li
-          =link_to 'Сотрудники', employees_path
-        %li
-          =link_to 'Посетители', visitors_path
-        %li
-          =link_to requests_path do
-            Заявки
-            %span.badge 1,118
-        %li
-          = link_to login_path do
-            = @current_user.blank? ? 'войти' : @current_user.email
-        %li
-          - if @current_user.blank?
-            = link_to login_path do
+        - if @current_user.blank?
+          %li
+            =link_to login_path do
               = fa_icon 'sign-in'
-          - else
-            = link_to logout_path do
+              Войти
+        -if @current_user
+          %li
+            =link_to root_path do
+              =fa_icon 'home'
+              Личный кабинет
+              .mut
+                %i=@current_user.email
+          -if @current_user.try(:is_admin?)
+            %li
+              =link_to users_path do
+                =fa_icon 'users'
+                Пользователи
+          -if !@current_user.try(:is_tenant?)
+            %li
+              =link_to tenants_path do
+                =fa_icon 'users'
+                Жильцы
+          %li
+            =link_to employees_path do
+              =fa_icon 'user'
+              Сотрудники
+          -if !@current_user.try(:is_matron?)
+            %li
+              =link_to visitors_path do
+                =fa_icon 'coffee'
+                Гости
+          -if @current_user.try(:is_admin?)
+            %li
+              =link_to buildings_path do
+                =fa_icon 'building'
+                Корпуса
+          -if @current_user.try(:is_tenant?)
+            %li
+              =link_to rooms_path do
+                =fa_icon 'cubes'
+                Квартира
+          -else
+            %li
+              =link_to rooms_path do
+                =fa_icon 'cubes'
+                Квартиры
+          -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
+            %li
+              =link_to furnitures_path do
+                =fa_icon 'bed'
+                Мебель
+          -if !@current_user.try(:is_commandant?) && !@current_user.try(:is_security?)
+            %li
+              =link_to linens_path do
+                =fa_icon 'archive'
+                Белье
+          %li
+            =link_to requests_path do
+              =fa_icon 'send'
+              Заявки
+              %span.badge 1,118
+          %li
+            =link_to logout_path do
               = fa_icon 'sign-out'
-
--# %nav.navbar.navbar-default
--#   .container
--#     .navbar-header
--#       =button_tag type: 'button', class: 'navbar-toggle collapsed', data: {toggle: 'collapse', target: '#navbar-collapse'} do
--#         %span.sr-only Показать/скрыть меню
--#         =fa_icon 'bars'
--#       =link_to t('app.name'), root_path, class: 'navbar-brand'
--#     #navbar-collapse.collapse.navbar-collapse
--#       %ul.nav.navbar-nav.navbar-right
--#         %li
--#           = link_to login_path do
--#             = @current_user.blank? ? 'войти' : @current_user.email
--#         %li
--#           - if @current_user.blank?
--#             = link_to login_path do
--#               = fa_icon 'sign-in'
--#           - else
--#             = link_to logout_path do
--#               = fa_icon 'sign-out'
-
--# %nav.navbar.navbar-inverse.hidden-print#top-bar
--#   .container-fluid
--#     .navbar-header
--#       .navbar-brand
--#         = link_to root_path do
--#           = image_tag 'logo.png', alt: t('app.company.short_name')
--#           = t('app.name')
--#       %button.navbar-toggle.collapsed{type: 'button', data: {toggle: 'collapse', target: '#bs-example-navbar-collapse-1'}}
--#         %span.sr-only
--#           Toggle navigation
--#         %span.icon-bar
--#         %span.icon-bar
--#         %span.icon-bar
+              Выйти

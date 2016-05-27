@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+
+  
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   # GET /people
@@ -47,13 +49,13 @@ class PeopleController < ApplicationController
       @person = Person.new
       @tenant_type = params[:tenant_type]
       if params[:tenant_type] == '1'
-        @person.build_workman.build_tenant
+        @person.build_workman.build_tenant.build_user
       elsif params[:tenant_type] == '2'
-        @person.build_guest.build_tenant
+        @person.build_guest.build_tenant.build_user
       elsif params[:tenant_type] == '3'
-        @person.build_relative.build_tenant
+        @person.build_relative.build_tenant.build_user
       elsif params[:tenant_type] == '0'
-        @person.build_student.build_tenant
+        @person.build_student.build_tenant.build_user
       end
     end
     respond_to do |format|
@@ -78,19 +80,19 @@ class PeopleController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).permit(:lastname, :firstname, :secondname, :birthday, :sex,
-        workman_attributes: [:person_id, :placejob, :post, :phone,
-        {tenant_attributes: [:security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type]}],
+        workman_attributes: [:id, :person_id, :placejob, :post, :phone,
+        {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}],
 
-        student_attributes: [:person_id, :faculty, :typegroup, :group, :course, :chair,
-        :receiptdate, :expirationdate, {tenant_attributes: [:security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type]}],
+        student_attributes: [:id, :person_id, :faculty, :typegroup, :group, :course, :chair,
+        :receiptdate, :expirationdate, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}],
 
-        guest_attributes: [:person_id, :cause,{tenant_attributes: [:security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type]}],
+        guest_attributes: [:id, :person_id, :cause,{tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}],
 
-        relative_attributes: [:person_id, :relationship, {tenant_attributes: [:security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type]}]
+        relative_attributes: [:id, :person_id, :relationship, :kin_id, :kin_type, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}]
         )
     end
 end

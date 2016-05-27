@@ -6,6 +6,11 @@
         .form-group
           =s.label :relationship
           =s.text_field :relationship
+    .row
+      .col-md-4
+        .form-group
+          =s.select :kin_id, options_for_select(Tenant.where("resident_type not like 'Relative'").map{|t| [t.id, t.resident_id, {data: {kin_type: t.resident_type}}]}, s.object.kin_id),{include_blank: true}, class: 'select_kin'
+          =s.hidden_field :kin_type, id: 'kintype'
     = s.fields_for :tenant do |f|
       .row
         .col-md-4

@@ -16,4 +16,8 @@
     =render 'navbar'
     .container
       =render 'flash_messages'
+      -if content_for? :breadcrumb
+        =yield :breadcrumb
+      -if content_for? :error_messages
+        =yield :error_messages
       =yield

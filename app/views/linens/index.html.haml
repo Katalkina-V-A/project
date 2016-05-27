@@ -1,13 +1,17 @@
 .page-header
   %h1 Белье
-.btn-toolbar
-  =link_to new_linen_path, class: 'btn btn-primary' do
-    =fa_icon 'plus'
-    Добавить
-.list-group
-  -@linens.each do |linen|
-    =link_to linen, class: 'list-group-item' do
-      =linen.name
-      .text-muted
-        =linen.quantity
-=paginate @linens
+-if @current_user.try(:is_admin?) || @current_user.try(:is_matron?)
+  .btn-toolbar
+    =link_to new_linen_path, class: 'btn btn-primary' do
+      =fa_icon 'plus'
+      Добавить
+-if @linens.blank?
+  .alert.alert-info Белье не найдено
+-else
+  .list-group
+    -@linens.each do |linen|
+      =link_to linen, class: 'list-group-item' do
+        =linen.name
+        .text-muted
+          =linen.quantity
+  =paginate @linens

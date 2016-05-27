@@ -1,10 +1,10 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :check_app_auth
-  
+
   def new
-    
+
   end
-  
+
   def create
     @user = User.find_by_email(params[:email])
 
@@ -19,7 +19,6 @@ class PasswordResetsController < ApplicationController
   def edit
     @token = params[:id]
     @user = User.load_from_reset_password_token(params[:id])
-
     if @user.blank?
       not_authenticated
       return

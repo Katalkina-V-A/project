@@ -1,8 +1,8 @@
 .page-header
   %h1
     =@furniture.name
-=render 'menu'
-
+-if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
+  =render 'menu'
 .row
   .col-md-4
     =Furniture.human_attribute_name(:quantity)

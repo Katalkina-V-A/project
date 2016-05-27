@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :check_level_two, only: [:edit, :update, :add]
+  before_action :check_admin, only: [:new, :create, :destroy]
   before_action :set_room, only: [:show, :edit, :update, :destroy, :add]
 
   # GET /rooms
@@ -39,7 +41,7 @@ class RoomsController < ApplicationController
     if @room.update(room_params)
       redirect_to @room, notice: 'Комната изменена.'
     else
-      render :edit
+      render params[:formname]
     end
   end
 
@@ -65,6 +67,6 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:building_id, :numb, :floor, :section, :place,
       :typeroom, :state, :fire, :signal, :samospas, :accessory, :accessoryfaculty,
-      :note, furnitureinrooms_attributes: [:room_id, :building_id, :quantity, :furniture_id])
+      :note, furnitureinrooms_attributes: [:id, :_destroy, :room_id, :quantity, :furniture_id])
     end
 end

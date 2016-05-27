@@ -1,4 +1,7 @@
 class LinensController < ApplicationController
+  before_action :check_level_three, only: [:show, :index]
+  before_action :check_level_four, only: [:edit, :create, :new, :update]
+  before_action :check_admin, only: [:destroy]
   before_action :set_linen, only: [:show, :edit, :update, :destroy]
 
   # GET /linens
@@ -56,6 +59,7 @@ class LinensController < ApplicationController
     def set_linen
       @linen = Linen.find(params[:id])
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def linen_params

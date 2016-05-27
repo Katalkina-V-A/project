@@ -13,5 +13,11 @@ tenant_changer = ->
     $(this).closest('form').attr('method', old_met)
     true
   true
+
+@kin_changer = ->
+  $('.select_kin').on 'change', ->
+    val = $(this).find('option:selected').attr('data-kin-type')
+    $(this).closest('.form-group').find('#kintype').val(val)
+
 $(document).ready tenant_changer
 $(document).on 'page:load', tenant_changer

@@ -10,13 +10,13 @@
       .row
         .col-md-4
           .form-group
-          = f.label :security
-          = f.check_box :security, class: 'checkbox'
+            = f.label :security
+            = f.check_box :security, class: 'checkbox'
       .row
         .col-md-4
           .form-group
-          = f.label :phone
-          = f.text_field :phone, class: 'form-control'
+            = f.label :phone
+            = f.text_field :phone, class: 'form-control'
       .row
         .col-md-4
           .form-group
@@ -36,8 +36,17 @@
       .row
         .col-md-4
           .form-group
-          = f.label :note
-          = f.text_area :note, class: 'form-control'
+            = f.label :note
+            = f.text_area :note, class: 'form-control'
+      =f.fields_for :user do |u|
+        .row
+          .col-md-4
+            .form-group
+              = u.label :email
+              = u.text_field :email, class: 'form-control'
+              = u.error_messages_for(:email)
+
+        =u.hidden_field :role, value: 0
   .row
     .col-md-4
       .form-group

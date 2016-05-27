@@ -1,4 +1,7 @@
 class FurnituresController < ApplicationController
+  before_action :check_level_one, only: [:show, :index]
+  before_action :check_level_two, only: [:edit, :create, :new, :update]
+  before_action :check_admin, only: [:destroy]
   before_action :set_furniture, only: [:show, :edit, :update, :destroy]
 
   # GET /furnitures

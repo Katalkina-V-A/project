@@ -1,6 +1,9 @@
 class Tenant < ActiveRecord::Base
   belongs_to :resident, polymorphic: true
 
+  has_one :user, as: :client
+  accepts_nested_attributes_for :user
+
   has_many :visitortenants, dependent: :destroy
   has_many :visitors, through: :visitortenants
 

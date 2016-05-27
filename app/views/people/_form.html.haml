@@ -5,5 +5,6 @@
       .form-group
         = label_tag('select_type') do
           Выберите тип жителя
-        = select_tag('tenant_type', options_for_select([['', '']] + Tenant::TENANTSTYPE, ''),id: :tenant_type_select)
+        .input-group
+          =select_tenant_type()
 #tenant_type_fields

@@ -1,4 +1,5 @@
 class BuildingsController < ApplicationController
+  before_action :check_admin, except: [:index, :show]
   before_action :set_building, only: [:show, :edit, :update, :destroy]
 
   # GET /buildings

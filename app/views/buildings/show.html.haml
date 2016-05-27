@@ -6,7 +6,8 @@
       =@building.address
       =surround ?(,?) do
         =@building.numb if @building.numb
-=render 'menu'
+-if @current_user.try(:is_admin?)
+  =render 'menu'
 
 .row
   .col-md-4
@@ -21,3 +22,5 @@
         =room.numb
         .text-muted
           =room.building_id
+-else
+  .alert.alert-info Квартиры не найдены
