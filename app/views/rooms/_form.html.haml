@@ -42,15 +42,15 @@
         = f.label :accessoryfaculty
         = f.select :accessoryfaculty,[['','']] + Room::ACCESSORYFACULTIES, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
   .row
-    .col-md-2
+    .col-md-4
       .form-group
         = f.label :fire
         = f.check_box :fire, class: 'form-control'
-    .col-md-2
+    .col-md-4
       .form-group
         = f.label :signal
         = f.check_box :signal, class: 'form-control'
-    .col-md-2
+    .col-md-4
       .form-group
         = f.label :samospas
         = f.check_box :samospas, class: 'form-control'

@@ -7,7 +7,7 @@
       =fa_icon 'plus'
       Заселить в квартиру
   -if @current_user.try(:is_matron?) || @current_user.try(:is_admin?)
-    =link_to addlinen_path(@person), class: 'btn btn-danger' do
+    =link_to addlinen_path(@person), class: 'btn btn-success' do
       =fa_icon 'archive'
       Добавить белье
   -if @current_user.try(:is_admin?)

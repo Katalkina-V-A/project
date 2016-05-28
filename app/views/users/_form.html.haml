@@ -1,7 +1,7 @@
 = form_for @user do |f|
   = error_messages_for @user
   .row
-    .col-md-4
+    .col-md-12
       .form-group
         = f.label :email
         = f.text_field :email, class: 'form-control'
@@ -9,18 +9,18 @@
 
   - if @user.new_record?
     .row
-      .col-md-4
+      .col-md-6
         .form-group
           = f.label :password
           = f.password_field :password, class: 'form-control'
           = f.error_messages_for(:password)
-      .col-md-4
+      .col-md-6
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: 'form-control'
           = f.error_messages_for(:password_confirmation)
   .row
-    .col-md-4
+    .col-md-12
       .form-group
         =f.label :role
         =f.select :role, User::ROLES.map.with_index{|name,i| [name,i]}, {},class: 'form-control'

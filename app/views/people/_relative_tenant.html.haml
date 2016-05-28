@@ -1,48 +1,5 @@
 = form_for @person do |fp|
   = error_messages_for @person
-  = fp.fields_for :relative do |s|
-    .row
-      .col-md-4
-        .form-group
-          =s.label :relationship
-          =s.text_field :relationship
-    .row
-      .col-md-4
-        .form-group
-          =s.select :kin_id, options_for_select(Tenant.where("resident_type not like 'Relative'").map{|t| [t.id, t.resident_id, {data: {kin_type: t.resident_type}}]}, s.object.kin_id),{include_blank: true}, class: 'select_kin'
-          =s.hidden_field :kin_type, id: 'kintype'
-    = s.fields_for :tenant do |f|
-      .row
-        .col-md-4
-          .form-group
-          = f.label :security
-          = f.check_box :security, class: 'checkbox'
-      .row
-        .col-md-4
-          .form-group
-          = f.label :phone
-          = f.text_field :phone, class: 'form-control'
-      .row
-        .col-md-4
-          .form-group
-          = f.label :arrivaldate
-          .input-group.date.datepicker
-            = f.text_field :arrivaldate, class: 'form-control'
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-calendar
-
-        .col-md-4
-          .form-group
-          = f.label :checkoutdate
-          .input-group.date.datepicker
-            = f.text_field :checkoutdate, class: 'form-control'
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-calendar
-      .row
-        .col-md-4
-          .form-group
-          = f.label :note
-          = f.text_area :note, class: 'form-control'
   .row
     .col-md-4
       .form-group
@@ -65,6 +22,49 @@
       .form-group
         = fp.label :sex
         = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+  = fp.fields_for :relative do |s|
+    .row
+      .col-md-12
+        .form-group
+          =s.label :kin_id
+          =s.select :kin_id, options_for_select(Tenant.where("resident_type not like 'Relative'").map{|t| [t.id, t.resident_id, {data: {kin_type: t.resident_type}}]}, s.object.kin_id),{include_blank: true}, class: 'select_kin form-control selectpicker'
+          =s.hidden_field :kin_type, id: 'kintype'
+    .row
+      .col-md-12
+        .form-group
+          =s.label :relationship
+          =s.text_field :relationship, class: 'form-control'
+    = s.fields_for :tenant do |f|
+      .row
+        .col-md-6
+          .form-group
+            = f.label :security
+            = f.check_box :security, class: 'checkbox'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :phone
+            = f.text_field :phone, class: 'form-control'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :arrivaldate
+            .input-group.date.datepicker
+              = f.text_field :arrivaldate, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
 
+        .col-md-6
+          .form-group
+            = f.label :checkoutdate
+            .input-group.date.datepicker
+              = f.text_field :checkoutdate, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+      .row
+        .col-md-12
+          .form-group
+            = f.label :note
+            = f.text_area :note, class: 'form-control'
   .form-actions
     = fp.submit nil, class: 'btn btn-primary'

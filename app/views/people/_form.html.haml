@@ -2,10 +2,9 @@
   = error_messages_for @person
   =hidden_field_tag :formname, :edit
   .row
-    .col-md-4
+    .col-md-12
       .form-group
         = label_tag('select_type') do
           Выберите тип жителя
-        .input-group
-          =select_tenant_type()
+        =select_tenant_type()
 #tenant_type_fields

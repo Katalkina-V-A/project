@@ -1,52 +1,5 @@
 = form_for @person do |fp|
   = error_messages_for @person
-  = fp.fields_for :guest do |s|
-    .row
-      .col-md-4
-        .form-group
-          =s.label :cause
-          =s.text_field :cause
-    = s.fields_for :tenant do |f|
-      .row
-        .col-md-4
-          .form-group
-            = f.label :security
-            = f.check_box :security, class: 'checkbox'
-      .row
-        .col-md-4
-          .form-group
-            = f.label :phone
-            = f.text_field :phone, class: 'form-control'
-      .row
-        .col-md-4
-          .form-group
-          = f.label :arrivaldate
-          .input-group.date.datepicker
-            = f.text_field :arrivaldate, class: 'form-control'
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-calendar
-
-        .col-md-4
-          .form-group
-          = f.label :checkoutdate
-          .input-group.date.datepicker
-            = f.text_field :checkoutdate, class: 'form-control'
-            %span.input-group-addon
-              %span.glyphicon.glyphicon-calendar
-      .row
-        .col-md-4
-          .form-group
-            = f.label :note
-            = f.text_area :note, class: 'form-control'
-      =f.fields_for :user do |u|
-        .row
-          .col-md-4
-            .form-group
-              = u.label :email
-              = u.text_field :email, class: 'form-control'
-              = u.error_messages_for(:email)
-
-        =u.hidden_field :role, value: 0
   .row
     .col-md-4
       .form-group
@@ -68,8 +21,53 @@
     .col-md-4
       .form-group
         = fp.label :sex
-        = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+        = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control selectpicker'
+  = fp.fields_for :guest do |s|
+    .row
+      .col-md-12
+        .form-group
+          =s.label :cause
+          =s.text_field :cause, class: 'form-control'
+    = s.fields_for :tenant do |f|
+      =f.fields_for :user do |u|
+        .row
+          .col-md-12
+            .form-group
+              = u.label :email
+              = u.text_field :email, class: 'form-control'
+              = u.error_messages_for(:email)
 
+        =u.hidden_field :role, value: 0
+      .row
+        .col-md-6
+          .form-group
+            = f.label :security
+            = f.check_box :security, class: 'checkbox'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :phone
+            = f.text_field :phone, class: 'form-control'
+      .row
+        .col-md-6
+          .form-group
+            = f.label :arrivaldate
+            .input-group.date.datepicker
+              = f.text_field :arrivaldate, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+        .col-md-6
+          .form-group
+            = f.label :checkoutdate
+            .input-group.date.datepicker
+              = f.text_field :checkoutdate, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+      .row
+        .col-md-12
+          .form-group
+            = f.label :note
+            = f.text_area :note, class: 'form-control'
 
   .form-actions
     = fp.submit nil, class: 'btn btn-primary'

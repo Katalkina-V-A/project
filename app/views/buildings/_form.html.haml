@@ -26,11 +26,11 @@
           = f.text_field :quantityroom, class: 'form-control'
           %span.input-group-addon квартир
   .row
-    .col-md-4
+    .col-md-6
       .form-group
         = f.label :typebuild
         = f.select :typebuild, [['','']]+Building::TYPEBUILDS, {}, multiple:true, title: "Ничего не выбрано",class: 'form-control selectpicker'
-    .col-md-4
+    .col-md-6
       .form-group
         = f.label :state
         = f.select :state,[['','']]+Building::STATES, {}, title: "Ничего не выбрвно", class: 'form-control selectpicker'

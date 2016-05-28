@@ -10,7 +10,7 @@ class Student < ActiveRecord::Base
 	TYPEGROUPS = [['Бакалавр',0], ['Магистр',1], ['Аспирант',2]]
   CHAIRS = [['Кафедра 1',0],['Кафедра 2',1]]
   #
-  # validates :faculty, :typegroup, :group, :course, :receieptdate,
+  # validates :faculty, :typegroup, :group, :course, :receiptdate,
   #   :expirationdate, presence: true
 	# validates :person_id, uniqueness: true
 	# validates :course, numericality: {only_integer: true, greater_than: 0}

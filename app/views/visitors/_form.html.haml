@@ -1,7 +1,6 @@
 = form_for @visitor do |f|
   =error_messages_for @visitor
   = f.fields_for :person do |fp|
-
     .row
       .col-md-4
         .form-group
@@ -25,11 +24,11 @@
           = fp.label :sex
           = fp.select :sex, [['','']] + Person::SEXES, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
   .row
-    .col-md-4
+    .col-md-6
       .form-group
         = f.label :document
         = f.select :document, [['','']] + Visitor::DOCUMENTS, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
-    .col-md-4
+    .col-md-6
       .form-group
         = f.label :numb
         = f.text_field :numb, class: 'form-control'

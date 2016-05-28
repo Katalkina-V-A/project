@@ -4,27 +4,27 @@
     .col-md-12
       .form-group
         = f.label :building_id
-        = f.select :building_id, options_for_select(Building.ordering.map{|b| [b.name, b.id]}), {}, title: "Ничего не выбрано", class: 'form-control selectpicker' 
+        = f.select :building_id, options_for_select(Building.ordering.map{|b| [b.name, b.id]}), {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
   .row
-    .col-md-6
+    .col-md-12
       .form-group
         = f.label :name
         = f.text_field :name, class: 'form-control'
   .row
-    .col-md-2
+    .col-md-6
       .form-group
         = f.label :quantity
         .input-group
           = f.text_field :quantity, class: 'form-control'
           %span.input-group-addon шт
-    .col-md-2
+    .col-md-6
       .form-group
         = f.label :size
         .input-group
           = f.text_field :size, class: 'form-control', data: {masked: 'size'}
           %span.input-group-addon (см)
   .row
-    .col-md-6
+    .col-md-12
       .form-group
         = f.label :note
         = f.text_area :note, class: 'form-control'
