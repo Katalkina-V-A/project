@@ -1,0 +1,23 @@
+= form_for @request do |f|
+  =error_messages_for @request
+  .row
+    .col-md-12
+      .well
+        =@request.historymove_id
+        %i.text-muted=l(@request.dateapp)
+        =@request.status
+        =@request.content
+  .row
+    .col-md-12
+      .form-group
+        = f.label :status
+        = f.select :status, options_for_select([['','']] + Request::STATUSES), {},
+        title: "Ничего не выбрано", class: 'form-control selectpicker'
+  .row
+    .col-md-12
+      .form-group
+        = f.label :answer
+        = f.text_area :answer, class: 'form-control'
+  = f.hidden_field :dateanswer, value: Date.today
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

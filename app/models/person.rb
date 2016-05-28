@@ -19,9 +19,23 @@ class Person < ActiveRecord::Base
   validate :check_birthday
   validates :lastname, :firstname, :birthday, :sex, presence: true
   validates :lastname, uniqueness: {scope: [:firstname, :secondname, :birthday]}
+
+  def get_person
+    if !self.student.nil?
+      self.student
+    elsif !self.workman.nil?
+      self.workman
+    elsif !self.relative.nil?
+      self.relative
+    elsif !self.guest.nil?
+      self.guest
+    end
+  end
   private
   def check_birthday
     errors.add(:birthday, :invalid) if birthday && birthday > Date.today
     true
   end
+
+
 end

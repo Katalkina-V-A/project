@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     u.try(:is_admin?) || u.try(:is_tenant?) || u.try(:is_matron?)
   end
   def self.edit_level_four?(u)
-    u.try(:is_admin?) || u.try(:is_commandant?)
+    u.try(:is_admin?) || u.try(:is_matron?)
   end
   def self.edit_level_five?(u)
     !u.try(:is_tenant?)
@@ -52,5 +52,8 @@ class User < ActiveRecord::Base
   end
   def self.edit_level_seven?(u)
     u.try(:is_security?) || u.try(:is_admin?)
+  end
+  def self.edit_level_eight?(u)
+    u.try(:is_matron?) || u.try(:is_admin?) || u.try(:is_commandant?)
   end
 end

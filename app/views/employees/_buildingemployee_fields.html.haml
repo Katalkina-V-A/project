@@ -1,0 +1,43 @@
+.nested-fields
+  .panel.panel-default
+    .panel-body
+      .row
+        =f.hidden_field :id
+        .col-md-12
+          .form-group
+            =f.label :building_id
+            =f.select :building_id, options_for_select(Building.all.map{|b| [b.name, b.id]}), {}, class: 'form-control selectpicker'
+      .row
+        .col-md-4
+          .form-group
+            =f.label :post
+            =f.text_field :post, class: 'form-control'
+        .col-md-4
+          .form-group
+            =f.label :cabinet
+            =f.text_field :cabinet, class: 'form-control'
+        .col-md-4
+          .form-group
+            =f.label :phone
+            =f.text_field :phone, class: 'form-control', data: {masked: 'phone'}
+      .row
+        .col-md-6
+          .form-group
+            =f.label :startwork
+            .input-group.date.timepicker
+              =f.text_field :startwork, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+        .col-md-6
+          .form-group
+            =f.label :endwork
+            .input-group.date.timepicker
+              = f.text_field :endwork, class: 'form-control'
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+      .row
+        .col-md-12
+          .form-group
+            =f.label :note
+            =f.text_area :note, class: 'form-control'
+      =link_to_remove_association "Удалить", f, class: 'btn btn-danger'

@@ -1,15 +1,11 @@
+.page-header
+  %h1 Редактирование мебели в квартире
 = form_for @room do |f|
   =error_messages_for(@room)
-  .row
-    .col-md-4
-      =label_tag('Наименование')
-    .col-md-2
-      =label_tag('Количество')
   = f.fields_for :furnitureinrooms do |t|
     =render 'furnitureinroom_fields', :f => t
 
   .links
-    =link_to_add_association "Добавить", f, :furnitureinrooms, force_non_association_create: true, class: 'btn btn-success'
-  .btn-toolbar
-    .form-actions
-      = f.submit nil, class: 'btn btn-primary'
+    =link_to_add_association "Добавить", f, :furnitureinrooms, class: 'btn btn-success'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

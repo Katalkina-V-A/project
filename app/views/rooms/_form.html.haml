@@ -2,45 +2,45 @@
   =error_messages_for @room
   =hidden_field_tag :formname, :edit
   .row
-    .col-md-8
+    .col-md-12
       .form-group
         = f.label :building_id
-        = f.select :building_id, Building.ordering.map{|b| [b.name, b.id]}, {}, class: 'form-control'
+        = f.select :building_id, Building.ordering.map{|b| [b.name, b.id]}, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
   .row
-    .col-md-2
+    .col-md-3
       .form-group
         = f.label :numb
         = f.text_field :numb, class: 'form-control'
-    .col-md-2
+    .col-md-3
       .form-group
         = f.label :floor
         = f.text_field :floor, class: 'form-control'
-    .col-md-2
+    .col-md-3
       .form-group
         = f.label :section
         = f.text_field :section, class: 'form-control'
-    .col-md-2
+    .col-md-3
       .form-group
         = f.label :place
         = f.text_field :place, class: 'form-control'
   .row
-    .col-md-4
+    .col-md-6
       .form-group
         = f.label :typeroom
-        = f.select :typeroom,[['','']] + Room::TYPEROOMS,{}, class: 'form-control'
-    .col-md-4
+        = f.select :typeroom,[['','']] + Room::TYPEROOMS,{}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+    .col-md-6
       .form-group
         = f.label :state
-        = f.select :state,[['','']] + Room::STATES, {}, class: 'form-control'
+        = f.select :state,[['','']] + Room::STATES, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
   .row
-    .col-md-4
+    .col-md-6
       .form-group
         = f.label :accessory
-        = f.select :accessory,[['','']] + Room::ACCESSORIES, {}, class: 'form-control'
-    .col-md-4
+        = f.select :accessory,[['','']] + Room::ACCESSORIES, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+    .col-md-6
       .form-group
         = f.label :accessoryfaculty
-        = f.select :accessoryfaculty,[['','']] + Room::ACCESSORYFACULTIES, {}, class: 'form-control'
+        = f.select :accessoryfaculty,[['','']] + Room::ACCESSORYFACULTIES, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
   .row
     .col-md-2
       .form-group
@@ -55,7 +55,7 @@
         = f.label :samospas
         = f.check_box :samospas, class: 'form-control'
   .row
-    .col-md-8
+    .col-md-12
       .form-group
         = f.label :note
         = f.text_area :note, class: 'form-control'

@@ -7,8 +7,11 @@ class Employee < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   has_many :requests
-  has_many :buildingemployees, dependent: :destroy
+
+  has_many :buildingemployees
+  accepts_nested_attributes_for :buildingemployees, allow_destroy: true
   has_many :buildings, through: :buildingemployees
+
   scope :ordering, -> { includes(:person).order("people.lastname") }
   validates :person_id, uniqueness: true
 end

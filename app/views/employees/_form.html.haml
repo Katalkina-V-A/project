@@ -10,7 +10,6 @@
         .form-group
           = fp.label :firstname
           = fp.text_field :firstname, class: 'form-control'
-    .row
       .col-md-4
         .form-group
           = fp.label :secondname
@@ -20,10 +19,11 @@
         .form-group
           = fp.label :birthday
           = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@employee.person.birthday) if @employee.person.birthday)
-    .row
       .col-md-4
         .form-group
           = fp.label :sex
-          = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+          = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control selectpicker'
+  .links
+    =link_to_add_association "Добавить должность", f, :buildingemployees, class: 'btn btn-success'
   .form-actions
     = f.submit nil, class: 'btn btn-primary'

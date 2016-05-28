@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  get 'tenants' => 'tenant#index', as: :tenants
+  resources :tenants
   resources :requests
   resources :employees
   resources :visitors
@@ -17,6 +16,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'rooms/:id/add' => 'rooms#add', as: :add
+
+  get 'people/:id/addroom' => 'people#addroom', as: :addroom
+  get 'people/:id/addlinen' => 'people#addlinen', as: :addlinen
+  
   resources :users do
     member do
       get :activate
@@ -25,7 +28,6 @@ Rails.application.routes.draw do
   resources :people do
     collection do
       get :select_tenants_type, as: :stt
-      get :select_kin_type, as: :skt
     end
     member do
 

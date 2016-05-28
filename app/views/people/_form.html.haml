@@ -1,5 +1,6 @@
 = form_for @person, data: {url: stt_people_path()} do |f|
   = error_messages_for @person
+  =hidden_field_tag :formname, :edit
   .row
     .col-md-4
       .form-group

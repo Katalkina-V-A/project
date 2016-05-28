@@ -1,7 +1,15 @@
 .btn-toolbar
-  =link_to edit_person_path(@person), class: 'btn btn-primary' do
-    =fa_icon 'edit'
-    Редактировать
+  -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
+    =link_to edit_person_path(@person), class: 'btn btn-primary' do
+      =fa_icon 'edit'
+      Редактировать
+    =link_to addroom_path(@person), class: 'btn btn-success' do
+      =fa_icon 'plus'
+      Заселить в квартиру
+  -if @current_user.try(:is_matron?) || @current_user.try(:is_admin?)
+    =link_to addlinen_path(@person), class: 'btn btn-danger' do
+      =fa_icon 'archive'
+      Добавить белье
   -if @current_user.try(:is_admin?)
     =link_to @person, data: {method: :delete, confirm: t('helpers.sure')}, class: 'btn btn-danger' do
       =fa_icon 'trash'

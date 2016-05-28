@@ -2,12 +2,12 @@
   .panel.panel-default
     .panel-body
       .row
-        =hidden_field_tag :formname, :add
+        =hidden_field_tag :formname, :addlinen
         =f.hidden_field :id
         .col-md-8
           .form-group
-            = f.label :furniture_id
-            = f.select :furniture_id, Furniture.ordering.map{|c| [c.name, c.id]}, {}, class: 'form-control'
+            = f.label :linen_id
+            = f.select :linen_id, Linen.ordering.map{|c| [c.name, c.id]}, {}, class: 'form-control selectpicker'
         .col-md-2
           .form-group
             = f.label :quantity

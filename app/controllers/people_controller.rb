@@ -1,7 +1,9 @@
 class PeopleController < ApplicationController
-
-  
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :check_level_eight, only: [:update, :edit]
+  before_action :check_level_four, only: [:addlinen]
+  before_action :check_level_two, only: [:new, :addroom]
+  before_action :check_admin, only: [:destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :addroom, :addlinen]
 
   # GET /people
   # GET /people.json
@@ -38,7 +40,7 @@ class PeopleController < ApplicationController
     if @person.update(person_params)
       redirect_to @person, notice: 'Комната изменена.'
     else
-      render :edit
+      render params[:formname]
     end
   end
 
@@ -63,12 +65,20 @@ class PeopleController < ApplicationController
       }
     end
   end
+
   # DELETE /people/1
   # DELETE /people/1.json
   def destroy
     if @person.destroy
       redirect_to people_url, notice: 'Комната удалена.'
     end
+  end
+
+  def addroom
+
+  end
+  def addlinen
+
   end
 
   private
@@ -82,17 +92,26 @@ class PeopleController < ApplicationController
       params.require(:person).permit(:lastname, :firstname, :secondname, :birthday, :sex,
         workman_attributes: [:id, :person_id, :placejob, :post, :phone,
         {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}],
+      :note, :resident_id, :resident_type, {
+        user_attributes: [:id, :email, :role, :client_id, :client_type],
+        historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
+        linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         student_attributes: [:id, :person_id, :faculty, :typegroup, :group, :course, :chair,
         :receiptdate, :expirationdate, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}],
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type],
+          historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
+          linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         guest_attributes: [:id, :person_id, :cause,{tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}],
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type],
+          historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
+          linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         relative_attributes: [:id, :person_id, :relationship, :kin_id, :kin_type, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type]}]}]
+      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type],
+          historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
+          linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}]
         )
     end
 end

@@ -25,6 +25,7 @@ $(document).on 'page:load', selectactive
 
 dtpick = ->
   $('.datepicker').datetimepicker({locale: 'ru', format: 'DD.MM.YYYY'})
+  $('.timepicker').datetimepicker({locale: 'ru', format: 'HH:mm'})
   false
 $(document).ready dtpick
 $(document).on 'page:load', dtpick

@@ -4,7 +4,9 @@ class Visitor < ActiveRecord::Base
   accepts_nested_attributes_for :person
 
   has_many :visitortenants
+  accepts_nested_attributes_for :visitortenants, allow_destroy: true
   has_many :tenants, through: :visitortenants
+
   DOCUMENTS = [['Паспорт',0], ['Водительское удостоверение',1], ['Пропуск',2], ['Студенческий билет',3]]
   scope :ordering, -> { includes(:person).order("people.lastname") }
   validates :person_id, uniqueness: {scope: [:document, :numb]}

@@ -1,12 +1,14 @@
 class Room < ActiveRecord::Base
   belongs_to :building, -> { ordering }
+  
   has_many :furnitureinrooms
+  has_many :furnitures, through: :furnitureinrooms
   accepts_nested_attributes_for :furnitureinrooms, allow_destroy: true
 
   has_many :historymoves
   has_many :tenants, through: :historymoves
 
-  has_many :furnitures, through: :furnitureinrooms
+
   scope :ordering, -> { order(:numb) }
   validates :numb, numericality: {only_integer: true, greater_or_equal_than: 0}
   validates :building_id, :numb, presence: true

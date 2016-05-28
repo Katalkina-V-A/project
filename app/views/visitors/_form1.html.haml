@@ -1,0 +1,19 @@
+= form_for @visitor do |f|
+  =error_messages_for @visitor
+  =f.fields_for :visitortenants do |t|
+    .row
+      .col-md-6
+        .form-group
+          =t.label :leavetime
+          .input-group.date.timepicker
+            =t.text_field :leavetime, class: 'form-control'
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+    .row
+      .col-md-12
+        .form-group
+          =t.label :note
+          =t.text_area :note, class: 'form-control'
+
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

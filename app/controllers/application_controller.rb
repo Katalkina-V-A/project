@@ -49,4 +49,7 @@ class ApplicationController < ActionController::Base
   def check_level_seven
     render_error unless User.edit_level_seven?(@current_user)
   end
+  def check_level_eight
+    render_error unless User.edit_level_eight?(@current_user)
+  end
 end

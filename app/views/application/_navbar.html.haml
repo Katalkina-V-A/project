@@ -30,7 +30,7 @@
           -if @current_user.try(:is_admin?)
             %li
               =link_to users_path do
-                =fa_icon 'users'
+                =fa_icon 'th-list'
                 Пользователи
           -if !@current_user.try(:is_tenant?)
             %li
@@ -79,4 +79,4 @@
           %li
             =link_to logout_path do
               = fa_icon 'sign-out'
-              Выйти
+              Выход

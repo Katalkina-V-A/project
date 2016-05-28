@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter :require_login, :only => [:index, :new, :create, :activate]
 

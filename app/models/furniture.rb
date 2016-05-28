@@ -2,6 +2,7 @@ class Furniture < ActiveRecord::Base
 
   has_many :furnitureinrooms
   has_many :rooms, through: :furnitureinrooms
+  
   belongs_to :building, -> {ordering}
 
   scope :ordering, -> { order(:name) }

@@ -19,6 +19,7 @@ class VisitorsController < ApplicationController
   def new
     @visitor = Visitor.new
     @visitor.person = Person.new
+    @visitor.visitortenants.build
   end
 
   # GET /visitors/1/edit
@@ -64,6 +65,8 @@ class VisitorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def visitor_params
       params.require(:visitor).permit(:person_id, :document, :numb, person_attributes: [:lastname,
-          :firstname, :secondname, :birthday, :sex])
+          :firstname, :secondname, :birthday, :sex],
+          visitortenants_attributes: [:id, :_destroy, :tenant_id, :visitor_id, :arrivaldate,
+            :arrivaltime, :leavetime, :note])
     end
 end
