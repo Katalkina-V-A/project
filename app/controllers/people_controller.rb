@@ -4,7 +4,7 @@ class PeopleController < ApplicationController
   before_action :check_level_two, only: [:new, :addroom]
   before_action :check_admin, only: [:destroy]
   before_action :set_person, only: [:show, :edit, :update, :destroy, :addroom, :addlinen]
-
+  before_action :check_tenant, only: [:show]
   # GET /people
   # GET /people.json
 
@@ -86,30 +86,32 @@ class PeopleController < ApplicationController
     def set_person
       @person = Person.find(params[:id])
     end
-
+    def check_tenant
+      render_error unless User.edit_tenant?(@current_user, @person, nil)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
       params.require(:person).permit(:lastname, :firstname, :secondname, :birthday, :sex,
         workman_attributes: [:id, :person_id, :placejob, :post, :phone,
         {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
       :note, :resident_id, :resident_type, {
-        user_attributes: [:id, :email, :role, :client_id, :client_type],
+        user_attributes: [:password, :password_confirmation, :activation_state,:id, :email, :role, :client_id, :client_type],
         historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
         linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         student_attributes: [:id, :person_id, :faculty, :typegroup, :group, :course, :chair,
         :receiptdate, :expirationdate, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type],
+      :note, :resident_id, :resident_type, {user_attributes: [:password, :password_confirmation, :activation_state, :id, :email, :role, :client_id, :client_type],
           historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
           linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         guest_attributes: [:id, :person_id, :cause,{tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type],
+      :note, :resident_id, :resident_type, {user_attributes: [:password, :password_confirmation, :activation_state, :id, :email, :role, :client_id, :client_type],
           historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
           linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         relative_attributes: [:id, :person_id, :relationship, :kin_id, :kin_type, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
-      :note, :resident_id, :resident_type, {user_attributes: [:id, :email, :role, :client_id, :client_type],
+      :note, :resident_id, :resident_type, {user_attributes: [:password, :password_confirmation, :activation_state, :id, :email, :role, :client_id, :client_type],
           historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
           linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}]
         )

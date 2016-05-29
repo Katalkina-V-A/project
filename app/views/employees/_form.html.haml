@@ -1,5 +1,19 @@
 = form_for @employee do |f|
   =error_messages_for @employee
+  =f.fields_for :user do |u|
+    .row
+      .col-md-6
+        .form-group
+          = u.label :email
+          = u.text_field :email, class: 'form-control'
+          = u.error_messages_for(:email)
+      .col-md-6
+        .form-group
+          = u.label :role
+          = u.select :role, [['','']] + User::ROLES,{}, class: 'form-control selectpicker'
+    =u.hidden_field :activation_state, value: "active"
+    =u.hidden_field :password, value: "12345"
+    =u.hidden_field :password_confirmation, value: "12345"
   = f.fields_for :person do |fp|
     .row
       .col-md-4

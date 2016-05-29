@@ -11,7 +11,7 @@ class Room < ActiveRecord::Base
 
   validates :numb, numericality: {only_integer: true, greater_or_equal_than: 0}
   validates :building_id, :numb, presence: true
-  validates :floor, :section, :place, numericality: {only_integer: true, greater_or_equal_than: 0}, allow_blank: true
+  validates :floor, :section, :place, numericality: {only_integer: true, greater_or_equal_than: 0}
   validates :building_id, uniqueness: {scope: :numb}
   validates :note, length: {minimum: 6}, allow_blank: true
 

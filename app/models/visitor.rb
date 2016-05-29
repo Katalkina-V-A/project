@@ -8,7 +8,7 @@ class Visitor < ActiveRecord::Base
 
   DOCUMENTS = [['Паспорт',0], ['Водительское удостоверение',1], ['Пропуск',2], ['Студенческий билет',3]]
 
-  scope :ordering, -> { joins(:visitortenants).order("visitortenants.created_at DESC") }
+  scope :ordering, -> { order("updated_at DESC") }
 
   validates :person_id, uniqueness: {scope: [:document, :numb]}
   validates :document, uniqueness: {scope: :numb}

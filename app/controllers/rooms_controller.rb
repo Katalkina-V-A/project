@@ -1,12 +1,19 @@
 class RoomsController < ApplicationController
+  before_action :check_level_five, only: [:index]
   before_action :check_level_two, only: [:edit, :update, :add]
   before_action :check_admin, only: [:new, :create, :destroy]
   before_action :set_room, only: [:show, :edit, :update, :destroy, :add]
+  before_action :check_tenant, only: [:show]
 
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.ordering.page(params[:page])
+    if @current_user.try(:is_admin?)
+      @rooms = Room.order(:building_id).ordering.page(params[:page])
+    else
+      array = @current_user.client.buildings.ids
+      @rooms = Room.where(building_id: array).order(:building_id).ordering.page(params[:page])
+    end
   end
 
   # GET /rooms/1
@@ -61,6 +68,9 @@ class RoomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
+    end
+    def check_tenant
+      render_error unless User.edit_tenant?(@current_user, nil, @room)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

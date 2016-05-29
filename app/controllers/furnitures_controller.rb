@@ -1,13 +1,18 @@
 class FurnituresController < ApplicationController
-  before_action :check_level_one, only: [:show, :index]
-  before_action :check_level_two, only: [:edit, :create, :new, :update]
+  before_action :check_level_one, only: [:show]
+  before_action :check_level_two, only: [:index, :edit, :create, :new, :update]
   before_action :check_admin, only: [:destroy]
   before_action :set_furniture, only: [:show, :edit, :update, :destroy]
 
   # GET /furnitures
   # GET /furnitures.json
   def index
-    @furnitures = Furniture.ordering.page(params[:page])
+    if @current_user.try(:is_commandant?)
+      array = @current_user.client.buildings.ids
+      @furnitures = Furniture.where(building_id: array).order(:building_id).ordering.page(params[:page])
+    elsif @current_user.try(:is_admin?)
+      @furnitures = Furniture.ordering.page(params[:page])
+    end
   end
 
   # GET /furnitures/1

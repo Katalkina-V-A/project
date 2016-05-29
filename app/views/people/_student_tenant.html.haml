@@ -1,5 +1,6 @@
 = form_for @person do |fp|
   = error_messages_for @person
+  =hidden_field_tag :formname, :edit
   .row
     .col-md-4
       .form-group
@@ -17,7 +18,7 @@
     .col-md-4
       .form-group
         = fp.label :birthday
-        = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}
+        = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@person.birthday) if @person.birthday)
     .col-md-4
       .form-group
         = fp.label :sex
@@ -61,6 +62,17 @@
             %span.input-group-addon
               %span.glyphicon.glyphicon-calendar
     = s.fields_for :tenant do |f|
+      =f.fields_for :user do |u|
+        .row
+          .col-md-12
+            .form-group
+              = u.label :email
+              = u.text_field :email, class: 'form-control'
+              = u.error_messages_for(:email)
+        =u.hidden_field :activation_state, value: "active"
+        =u.hidden_field :role, value: 0
+        =u.hidden_field :password, value: "12345"
+        =u.hidden_field :password_confirmation, value: "12345"
       .row
         .col-md-6
           .form-group
@@ -85,7 +97,7 @@
             .input-group.date.datepicker
               = f.text_field :checkoutdate, class: 'form-control'
               %span.input-group-addon
-                %span.glyphicon.glyphicon-calendar`
+                %span.glyphicon.glyphicon-calendar
       .row
         .col-md-12
           .form-group

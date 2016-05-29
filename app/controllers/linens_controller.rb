@@ -1,13 +1,18 @@
 class LinensController < ApplicationController
-  before_action :check_level_three, only: [:show, :index]
-  before_action :check_level_four, only: [:edit, :create, :new, :update]
+  before_action :check_level_three, only: [:show]
+  before_action :check_level_four, only: [:index, :edit, :create, :new, :update]
   before_action :check_admin, only: [:destroy]
   before_action :set_linen, only: [:show, :edit, :update, :destroy]
 
   # GET /linens
   # GET /linens.json
   def index
-    @linens = Linen.ordering.page(params[:page])
+    if @current_user.try(:is_matron?)
+      array = @current_user.client.buildings.ids
+      @linens = Linen.where(building_id: array).order(:building_id).ordering.page(params[:page])
+    elsif @current_user.try(:is_admin?)
+      @linens = Linen.ordering.page(params[:page])
+    end
   end
 
   # GET /linens/1

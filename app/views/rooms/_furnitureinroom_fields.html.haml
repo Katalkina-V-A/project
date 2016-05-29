@@ -7,7 +7,7 @@
         .col-md-8
           .form-group
             = f.label :furniture_id
-            = f.select :furniture_id, Furniture.ordering.map{|c| [c.name, c.id]}, {}, class: 'form-control'
+            = f.select :furniture_id, Furniture.where(building_id: @room.building_id).ordering.map{|c| [c.name, c.id]}, {}, class: 'form-control'
         .col-md-2
           .form-group
             = f.label :quantity

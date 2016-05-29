@@ -17,6 +17,7 @@ class EmployeesController < ApplicationController
   def new
     @employee = Employee.new
     @employee.person = Person.new
+    @employee.build_user
   end
 
   # GET /employees/1/edit
@@ -63,6 +64,7 @@ class EmployeesController < ApplicationController
     def employee_params
       params.require(:employee).permit(:person_id,
       person_attributes: [:id, :lastname, :firstname, :secondname, :birthday, :sex],
+      user_attributes: [:password, :password_confirmation, :activation_state,:id, :email, :role, :client_id, :client_type],
       buildingemployees_attributes: [:id, :_destroy, :building_id, :post, :employee_id,
       :cabinet, :phone, :startwork, :endwork, :note])
     end

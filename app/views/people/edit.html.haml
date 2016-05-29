@@ -1,3 +1,10 @@
 .page-header
   %h1 Редактировать
-=render 'form'
+-if @person.get_person.tenant.resident_type == "Student"
+  =render 'student_tenant'
+-elsif @person.get_person.tenant.resident_type == "Workman"
+  =render 'workman_tenant'
+-elsif @person.get_person.tenant.resident_type == "Guest"
+  =render 'guest_tenant'
+-elsif @person.get_person.tenant.resident_type == "Relative"
+  =render 'relative_tenant'

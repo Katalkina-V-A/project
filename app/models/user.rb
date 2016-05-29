@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   def role_name
     role && ROLES[role]
   end
-  
+
   scope :ordering, -> { order(:email) }
 
   def self.edit_level_one?(u)
@@ -57,5 +57,16 @@ class User < ActiveRecord::Base
   end
   def self.edit_level_eight?(u)
     u.try(:is_matron?) || u.try(:is_admin?) || u.try(:is_commandant?)
+  end
+
+  def self.edit_tenant?(user, person, room)
+    if person != nil
+      user.try(:is_tenant?) && (user.client.resident.person == person) || user.try(:is_matron?) || user.try(:is_admin?) || user.try(:is_commandant?) || user.try(:is_security?)
+    else
+      user.try(:is_tenant?) && (user.client.historymoves.last.room == room) || user.try(:is_matron?) || user.try(:is_admin?) || user.try(:is_commandant?) || user.try(:is_security?)
+    end
+  end
+  def self.edit_reader?(user, request)
+    user.client == request.employee || user.try(:is_admin?) || user.client.historymoves.include?(request.historymove)
   end
 end

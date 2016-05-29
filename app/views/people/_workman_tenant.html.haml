@@ -1,5 +1,6 @@
 = form_for @person do |fp|
   = error_messages_for @person
+  =hidden_field_tag :formname, :edit
   .row
     .col-md-4
       .form-group
@@ -38,6 +39,18 @@
           =s.label :phone
           =s.text_field :phone, class: 'form-control', data: {masked: 'phone'}
     = s.fields_for :tenant do |f|
+      =f.fields_for :user do |u|
+        .row
+          .col-md-12
+            .form-group
+              = u.label :email
+              = u.text_field :email, class: 'form-control'
+              = u.error_messages_for(:email)
+
+        =u.hidden_field :activation_state, value: "active"
+        =u.hidden_field :role, value: 0
+        =u.hidden_field :password, value: "12345"
+        =u.hidden_field :password_confirmation, value: "12345"
       .row
         .col-md-6
           .form-group

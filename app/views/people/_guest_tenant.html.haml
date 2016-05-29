@@ -1,5 +1,6 @@
 = form_for @person do |fp|
   = error_messages_for @person
+  =hidden_field_tag :formname, :edit
   .row
     .col-md-4
       .form-group
@@ -37,7 +38,10 @@
               = u.text_field :email, class: 'form-control'
               = u.error_messages_for(:email)
 
+        =u.hidden_field :activation_state, value: "active"
         =u.hidden_field :role, value: 0
+        =u.hidden_field :password, value: "12345"
+        =u.hidden_field :password_confirmation, value: "12345"
       .row
         .col-md-6
           .form-group

@@ -22,11 +22,25 @@
               Войти
         -if @current_user
           %li
-            =link_to root_path do
-              =fa_icon 'home'
-              Личный кабинет
-              .mut
-                %i=@current_user.email
+            -if @current_user.client
+              -if @current_user.client_type == "Tenant"
+                =link_to @current_user.client.resident.person do
+                  =fa_icon 'home'
+                  Личный кабинет
+                  .mut
+                    %i=@current_user.email
+              -else
+                =link_to @current_user.client.person do
+                  =fa_icon 'home'
+                  Личный кабинет
+                  .mut
+                    %i=@current_user.email
+            -else
+              =link_to root_path do
+                =fa_icon 'home'
+                Личный кабинет
+                .mut
+                  %i=@current_user.email
           -if @current_user.try(:is_admin?)
             %li
               =link_to users_path do
@@ -45,22 +59,23 @@
             %li
               =link_to visitors_path do
                 =fa_icon 'coffee'
-                Гости
+                Посетители
           -if @current_user.try(:is_admin?)
             %li
               =link_to buildings_path do
                 =fa_icon 'building'
                 Корпуса
-          -if @current_user.try(:is_tenant?)
-            %li
-              =link_to rooms_path do
-                =fa_icon 'cubes'
-                Квартира
           -else
-            %li
-              =link_to rooms_path do
-                =fa_icon 'cubes'
-                Квартиры
+            -if @current_user.try(:is_tenant?)
+              %li
+                =link_to @current_user.client.historymoves.last.room do
+                  =fa_icon 'cubes'
+                  Квартира
+            -else
+              %li
+                =link_to rooms_path do
+                  =fa_icon 'cubes'
+                  Квартиры
           -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
             %li
               =link_to furnitures_path do

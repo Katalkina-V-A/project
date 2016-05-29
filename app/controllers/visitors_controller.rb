@@ -7,7 +7,15 @@ class VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-    @visitors = Visitor.ordering.page(params[:page])
+    if @current_user.try(:is_admin?)
+      @visitors = Visitor.ordering.page(params[:page])
+    elsif !@current_user.try(:is_tenant?)
+      array = @current_user.client.buildings.ids
+      @visitors = Visitor.joins(tenants: [rooms: [:building]]).where(rooms: {building_id: array}).distinct.ordering.page(params[:page])
+    elsif @current_user.try(:is_tenant?)
+      @visitors = Visitor.joins(:tenants).where("visitortenants.tenant_id = :q",
+      q: @current_user.client.id).ordering.page(params[:page])
+    end
   end
 
   # GET /visitors/1

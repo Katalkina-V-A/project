@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   get 'people/:id/addroom' => 'people#addroom', as: :addroom
   get 'people/:id/addlinen' => 'people#addlinen', as: :addlinen
-  
   resources :users do
     member do
       get :activate
