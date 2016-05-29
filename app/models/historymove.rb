@@ -8,5 +8,5 @@ class Historymove < ActiveRecord::Base
 
   validates :tenant_id, uniqueness: {scope: [:room_id, :dateout]}
   validates :tenant_id, uniqueness: {scope: [:room_id, :datein]}
-  validates :note, length: {minimum: 6}
+  validates :note, length: {minimum: 6}, allow_blank: true
 end

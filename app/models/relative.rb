@@ -4,7 +4,6 @@ class Relative < ActiveRecord::Base
   belongs_to :kin, polymorphic: true
 
   has_one :tenant, as: :resident
-  validates_presence_of :tenant
   accepts_nested_attributes_for :tenant
   scope :ordering, -> { includes(:person).order("people.lastname") }
 

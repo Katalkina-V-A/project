@@ -1,18 +1,14 @@
 class Person < ActiveRecord::Base
   has_one :student, dependent: :destroy
-  validates_presence_of :student
   accepts_nested_attributes_for :student
 
   has_one :workman, dependent: :destroy
-  validates_presence_of :workman
   accepts_nested_attributes_for :workman
 
   has_one :relative, dependent: :destroy
-  validates_presence_of :relative
   accepts_nested_attributes_for :relative
 
   has_one :guest, dependent: :destroy
-  validates_presence_of :guest
   accepts_nested_attributes_for :guest
 
   has_one :visitor, dependent: :destroy, inverse_of: :person

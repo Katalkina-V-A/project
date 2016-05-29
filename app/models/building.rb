@@ -15,7 +15,7 @@ class Building < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true, length: {minimum: 6}
   # validates :index, presence: true, numericality: {only_integer: true, greater_or_equal_than: 100000, less_than: 1000000}
   validates :numb, :quantityroom, :floor, numericality: {only_integer: true, greater_or_equal_than: 0}, allow_blank: true
-  validates :note, length: {minimum: 6}
+  validates :note, length: {minimum: 6}, allow_blank: true
   # validates :state, inclusion: { in: STATES }
   # validates :typebuild, inclusion: { in: TYPEBUILDS }
 

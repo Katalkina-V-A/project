@@ -5,7 +5,7 @@ class Buildingemployee < ActiveRecord::Base
   validates :building_id, :post, presence: true
   validates :building_id, uniqueness: {scope: [:employee_id, :post]}
   validate :check_interval
-  validates :note, length: {minimum: 6}
+  validates :note, length: {minimum: 6}, allow_blank: true
 
   private
 

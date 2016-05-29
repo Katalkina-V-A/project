@@ -2,8 +2,6 @@ class Room < ActiveRecord::Base
   belongs_to :building, -> { ordering }
 
   has_many :furnitureinrooms
-  has_many :furnitures, through: :furnitureinrooms
-  validates_presence_of :furnitureinrooms
   accepts_nested_attributes_for :furnitureinrooms, allow_destroy: true
 
   has_many :historymoves
@@ -15,7 +13,7 @@ class Room < ActiveRecord::Base
   validates :building_id, :numb, presence: true
   validates :floor, :section, :place, numericality: {only_integer: true, greater_or_equal_than: 0}, allow_blank: true
   validates :building_id, uniqueness: {scope: :numb}
-  validates :note, length: {minimum: 6}
+  validates :note, length: {minimum: 6}, allow_blank: true
 
   STATES = [['Жилая',0], ['Ремонт',1], ['Подсобное помещение',2]]
   ACCESSORIES = [['Мужская',0], ['Женская',1], ['Семейная',2]]

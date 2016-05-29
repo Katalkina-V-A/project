@@ -2,7 +2,6 @@ class Workman < ActiveRecord::Base
   belongs_to :person, -> { ordering }
 
   has_one :tenant, as: :resident
-  validates_presence_of :tenant
   accepts_nested_attributes_for :tenant
 
   has_many :relatives, as: :kin

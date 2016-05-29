@@ -2,7 +2,7 @@ class Student < ActiveRecord::Base
   belongs_to :person, -> { ordering }
 
   has_one :tenant, as: :resident
-  validates_presence_of :tenant
+
   accepts_nested_attributes_for :tenant
   scope :ordering, -> { includes(:person).order("people.lastname") }
   has_many :relatives, as: :kin
@@ -21,7 +21,9 @@ class Student < ActiveRecord::Base
   private
 
   def check_interval
-    errors.add(:receiptdate, 'не может быть позднее даты окончания') if self.receiptdate > self.expirationdate
+    if self.receiptdate && self.expirationdate != nil
+      errors.add(:receiptdate, 'не может быть позднее даты окончания') if self.receiptdate > self.expirationdate
+    end
     true
   end
 end
