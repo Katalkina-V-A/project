@@ -20,28 +20,26 @@ ru:
       truncate: …
   activerecord:
     models:
-      linen: Белье
-      furniture: Мебель
-      user: Пользователь
       building: Корпус общежития
-      room: Квартира
+      buildingemployee: Сотрудники общежития
+      employee: Сотрудник
+      furniture: Мебель
       furnitureinroom: Мебель в квартире
+      guest: Гость
+      historymove: История переездов
+      linen: Белье
+      linenattenant: Белье у проживающего
+      person: Персона
+      relative: Родственник
+      request: Заявка
+      room: Квартира
+      student: Студент
+      tenant: Проживающий
+      user: Пользователь
+      visitor: Посетитель
+      visitortenant: Посетители жильцов
+      workman: Сотрудники института
     attributes:
-      user:
-        email: Пользовательское имя/электронная почта
-      furnitureinroom:
-        quantity: Количество
-        furniture_id: Наименование
-      linen:
-        name: Наименование
-        quantity: Количество
-        size: Размеры
-        note: Примечание
-      furniture:
-        name: Наименование
-        quantity: Количество
-        size: Размеры
-        note: Примечание
       building:
         name: Наименование
         address: Адрес
@@ -52,6 +50,65 @@ ru:
         note: Примечание
         quantityroom: Число квартир
         rooms: Квартиры
+      buildingemployee:
+        employee_id: Сотрудник
+        building_id: Корпус
+        post: Должность
+        cabinet: Кабинет
+        phone: Рабочий телефон
+        startwork: Время начала работы
+        endwork: Время окончания работы
+        note: Примечание
+      employee:
+        person_id: Персона
+      furniture:
+        building_id: Корпус
+        name: Наименование
+        quantity: Количество
+        size: Размеры
+        note: Примечание
+      furnitureinroom:
+        furniture_id: Наименование
+        room_id: Квартира
+        quantity: Количество
+      guest:
+        person_id: Персона
+        cause: Причина приезда/заселения
+      historymove:
+        tenant_id: Проживающий
+        room_id: Квартира
+        datein: Дата въезда
+        dateout: Дата выезда
+        note: Примечание
+      linen:
+        building_id: Корпус
+        name: Наименование
+        quantity: Количество
+        size: Размеры
+        note: Примечание
+      linenattenant:
+        tenant_id: Проживающий
+        linen_id: Наименование
+        quantity: Количество
+      person:
+        lastname: Фамилия
+        firstname: Имя
+        secondname: Отчество
+        birthday: Дата рождения
+        sex: Пол
+      relative:
+        person_id: Персона
+        kin_id: Проживающий
+        kin_type: Проживающий
+        relationship: Родство
+      request:
+        employee_id: Кому
+        historymove_id: От кого
+        content: Текст заявки
+        status: Статус
+        dateapp: Дата подачи
+        dateanswer: Дата ответа
+        answer: Ответ
       room:
         building_id: Корпус
         numb: Номер квартиры
@@ -66,6 +123,44 @@ ru:
         accessory: Принадлежность комнаты
         accessoryfaculty: Факультет
         note: Примечание
+      student:
+        person_id: Персона
+        faculty: Факультет
+        typegroup: Тип обучения
+        group: Группа
+        receiptdate: Дата поступления
+        expirationdate: Дата окончания
+        chair: Специальность
+        course: Курс
+      tenant:
+        security: Отметка о технике безопасности
+        phone: Телефон
+        arrivaldate: Дата заселения
+        checkoutdate: Дата выселения
+        note: Примечание
+        resident_id: Тип жильца
+        resident_type: Тип жильца
+      user:
+        email: Пользовательское имя/электронная почта
+        role: Роль
+        password: Пароль
+        password_confirmation: Подтвердите пароль
+      visitor:
+        person_id: Персона
+        document: Документ, подтверждающий личность
+        numb: Номер документа
+      visitortenant:
+        tenant_id: К кому
+        visitor_id: Посетитель
+        arrivaldate: Дата входа
+        arrivaltime: Время входа
+        leavetime: Время выхода
+        note: Примечание
+      workman:
+        person_id: Персона
+        placejob: Место работы
+        post: Должность
+        phone: Рабочий телефон
     errors:
       models:
         person:

@@ -16,7 +16,7 @@ class Student < ActiveRecord::Base
   # включаются в массив
   validate :check_interval
   validates :group, presence: true
-	validates :course, presence: true. numericality: {only_integer: true, greater_than: 0}
+	validates :course, presence: true, numericality: {only_integer: true, greater_than: 0}
 
   private
 
