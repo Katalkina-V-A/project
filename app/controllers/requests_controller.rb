@@ -28,7 +28,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     if @request.save
-      redirect_to @request, notice: 'Заявка создана.'
+      redirect_to @request, notice: 'Ваша заявка принята.'
     else
       render :new
     end
@@ -38,7 +38,7 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1.json
   def update
     if @request.update(request_params)
-      redirect_to @request, notice: 'Заявка изменена.'
+      redirect_to @request, notice: 'Параметры изменены.'
     else
       render :edit
     end

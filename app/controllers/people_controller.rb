@@ -28,7 +28,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
 
     if @person.save
-      redirect_to @person, notice: 'Комната создана.'
+      redirect_to @person, notice: 'Жилец добавлен в базу.'
     else
       render :new
     end
@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1.json
   def update
     if @person.update(person_params)
-      redirect_to @person, notice: 'Комната изменена.'
+      redirect_to @person, notice: 'Параметры изменены.'
     else
       render params[:formname]
     end
@@ -70,7 +70,7 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     if @person.destroy
-      redirect_to people_url, notice: 'Комната удалена.'
+      redirect_to people_url, notice: 'Жилец удален из базы.'
     end
   end
 

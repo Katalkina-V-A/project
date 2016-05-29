@@ -1,6 +1,6 @@
 class Historymove < ActiveRecord::Base
-  belongs_to :tenant
-  belongs_to :room
+  belongs_to :tenant, -> { ordering }
+  belongs_to :room, -> { ordering }
 
   has_many :requests
 
@@ -8,4 +8,5 @@ class Historymove < ActiveRecord::Base
 
   validates :tenant_id, uniqueness: {scope: [:room_id, :dateout]}
   validates :tenant_id, uniqueness: {scope: [:room_id, :datein]}
+  validates :note, length: {minimum: 6}
 end

@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'Пользоваетль изменен.'
+      redirect_to @user, notice: 'Параметры изменены.'
     else
       render :edit
     end

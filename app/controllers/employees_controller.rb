@@ -29,7 +29,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
-      redirect_to @employee, notice: 'Сотрудник создана.'
+      redirect_to @employee, notice: 'Сотрудник добавлен в базу.'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     if @employee.update(employee_params)
-      redirect_to @employee, notice: 'Сотрудник изменена.'
+      redirect_to @employee, notice: 'Параметры изменены.'
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1.json
   def destroy
     if @employee.destroy
-      redirect_to employees_url, notice: 'Сотрудник удалена.'
+      redirect_to employees_url, notice: 'Сотрудник удален из базы.'
     end
   end
 

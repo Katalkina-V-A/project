@@ -1,9 +1,9 @@
 class WelcomeController < ApplicationController
   skip_before_action :check_app_auth
   before_action :require_login, only: :destroy
-  
+
   def index
-  end 
+  end
 
   def new
     @user = User.new
@@ -22,5 +22,5 @@ class WelcomeController < ApplicationController
   def destroy
     logout
     redirect_to(root_path, notice: 'Сеанс работы в системе завершен')
-  end  
+  end
 end

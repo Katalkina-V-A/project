@@ -27,7 +27,7 @@ class BuildingsController < ApplicationController
   def create
     @building = Building.new(building_params)
     if @building.save
-      redirect_to @building, notice: 'Корпус создан.'
+      redirect_to @building, notice: 'Корпус добавлен в базу.'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class BuildingsController < ApplicationController
   # PATCH/PUT /buildings/1.json
   def update
     if @building.update(building_params)
-      redirect_to @building, notice: 'Корпус изменен.'
+      redirect_to @building, notice: 'Параметры изменены.'
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class BuildingsController < ApplicationController
   # DELETE /buildings/1.json
   def destroy
     if @building.destroy
-      redirect_to buildings_url, notice: 'Корпус удален.'
+      redirect_to buildings_url, notice: 'Корпус удален из базы.'
     end
   end
 

@@ -29,7 +29,7 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to @room, notice: 'Комната создана.'
+      redirect_to @room, notice: 'Комната добавлена в базу.'
     else
       render :new
     end
@@ -39,7 +39,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     if @room.update(room_params)
-      redirect_to @room, notice: 'Комната изменена.'
+      redirect_to @room, notice: 'Параметры изменены.'
     else
       render params[:formname]
     end
@@ -53,7 +53,7 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1.json
   def destroy
     if @room.destroy
-      redirect_to rooms_url, notice: 'Комната удалена.'
+      redirect_to rooms_url, notice: 'Комната удалена из базы.'
     end
   end
 

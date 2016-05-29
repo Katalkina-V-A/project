@@ -30,7 +30,7 @@ class LinensController < ApplicationController
     @linen = Linen.new(linen_params)
 
     if @linen.save
-      redirect_to @linen, notice: 'Белье создано.'
+      redirect_to @linen, notice: 'Белье добавлено в базу.'
     else
       render :new
     end
@@ -40,7 +40,7 @@ class LinensController < ApplicationController
   # PATCH/PUT /linens/1.json
   def update
     if @linen.update(linen_params)
-      redirect_to @linen, notice: 'Белье изменено.'
+      redirect_to @linen, notice: 'Параметры изменены.'
     else
       render :edit
     end
@@ -50,7 +50,7 @@ class LinensController < ApplicationController
   # DELETE /linens/1.json
   def destroy
     if @linen.destroy
-      redirect_to linens_url, notice: 'Белье удалено.'
+      redirect_to linens_url, notice: 'Белье удалено из базы.'
     end
   end
 

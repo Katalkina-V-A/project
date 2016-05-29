@@ -30,7 +30,7 @@ class FurnituresController < ApplicationController
     @furniture = Furniture.new(furniture_params)
 
     if @furniture.save
-      redirect_to @furniture, notice: 'Мебель создана.'
+      redirect_to @furniture, notice: 'Мебель добавлена в базу.'
     else
       render :new
     end
@@ -40,7 +40,7 @@ class FurnituresController < ApplicationController
   # PATCH/PUT /furnitures/1.json
   def update
     if @furniture.update(furniture_params)
-      redirect_to @furniture, notice: 'Мебель изменена.'
+      redirect_to @furniture, notice: 'Параметры изменены.'
     else
       render :edit
     end
@@ -50,7 +50,7 @@ class FurnituresController < ApplicationController
   # DELETE /furnitures/1.json
   def destroy
     if @furniture.destroy
-      redirect_to furnitures_url, notice: 'Мебель удалена.'
+      redirect_to furnitures_url, notice: 'Мебель удалена из базы.'
     end
   end
 

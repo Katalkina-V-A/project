@@ -1,15 +1,16 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
+
   belongs_to :client, polymorphic: true
 
   validates :email, presence: true, uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 3}, confirmation: true,
             if: Proc.new { |u| u.new_record? or !u.password.blank? }, allow_blank: true
+
   ROLES = %w{Проживающий Комендант Кастелянша Охранник Администратор}
   validates :role, presence: true, inclusion: {in: 0...ROLES.size}
 
   def is_admin?()
-    # true
     role == 4
   end
   def is_commandant?()
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
   def role_name
     role && ROLES[role]
   end
+  
   scope :ordering, -> { order(:email) }
 
   def self.edit_level_one?(u)

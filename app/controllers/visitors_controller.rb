@@ -32,7 +32,7 @@ class VisitorsController < ApplicationController
     @visitor = Visitor.new(visitor_params)
 
     if @visitor.save
-      redirect_to @visitor, notice: 'Посетитель создана.'
+      redirect_to @visitor, notice: 'Посетитель зарегистрирован.'
     else
       render :new
     end
@@ -42,7 +42,7 @@ class VisitorsController < ApplicationController
   # PATCH/PUT /visitors/1.json
   def update
     if @visitor.update(visitor_params)
-      redirect_to @visitor, notice: 'Посетитель изменена.'
+      redirect_to @visitor, notice: 'Параметры изменены.'
     else
       render :edit
     end
@@ -52,7 +52,7 @@ class VisitorsController < ApplicationController
   # DELETE /visitors/1.json
   def destroy
     if @visitor.destroy
-      redirect_to visitors_url, notice: 'Посетитель удалена.'
+      redirect_to visitors_url, notice: 'Посетитель удален.'
     end
   end
 
