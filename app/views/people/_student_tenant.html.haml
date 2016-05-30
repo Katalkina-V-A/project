@@ -20,15 +20,19 @@
         = fp.label :birthday
         = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@person.birthday) if @person.birthday)
     .col-md-4
-      .form-group
-        = fp.label :sex
-        = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+      .form-inline
+        .form-group
+          = fp.label :sex
+          = fp.radio_button(:sex, "М")
+          Мужской
+          = fp.radio_button(:sex, "Ж")
+          Женский
   = fp.fields_for :student do |s|
     .row
       .col-md-6
         .form-group
           =s.label :faculty
-          =s.select :faculty, [['','']] + Student::FACULTIES, {}, class: 'form-control'
+          =s.select :faculty,options_for_select(Student::FACULTIES), {}, title: "Ничего не выбрано", class: 'form-control selectpicker', data: {value: (tmp = params.try('[]', :person).try('[]', :student).try('[]', :faculty)).nil? ? s.object.faculty : tmp}
       .col-md-6
         .form-group
           =s.label :chair
@@ -105,4 +109,4 @@
             = f.text_area :note, class: 'form-control'
 
   .form-actions
-    = fp.submit 'Save', class: 'btn btn-primary'
+    = fp.submit nil, class: 'btn btn-primary'

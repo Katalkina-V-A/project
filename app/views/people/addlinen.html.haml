@@ -2,7 +2,7 @@
   %h1 Добавление белья
 = form_for @person do |s|
   =error_messages_for(@person)
-  =s.fields_for :student do |g|
+  =s.fields_for s.object.person_class_label do |g|
     =g.fields_for :tenant do |f|
       = f.fields_for :linenattenants do |t|
         =render 'linenattenant_fields', :f => t

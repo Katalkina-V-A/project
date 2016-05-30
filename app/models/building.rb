@@ -1,5 +1,5 @@
 class Building < ActiveRecord::Base
-
+  before_validation :prepare_typebuild
   has_many :rooms, dependent: :destroy
 
   has_many :buildingemployees, dependent: :destroy
@@ -19,7 +19,16 @@ class Building < ActiveRecord::Base
   # validates :state, inclusion: { in: STATES }
   # validates :typebuild, inclusion: { in: TYPEBUILDS }
 
+
+
   TYPEBUILDS = [['Квартирный',0], ['Коридорный',1], ['Блочный',2]]
 
   STATES = [['Жилой',0], ['Ремонт',1], ['Строительство',2]]
+  def prepare_typebuild
+    if self.typebuild.kind_of?(Array)
+      self.typebuild = self.typebuild.select{|t| !t.blank?}.map(&:to_i)
+    end
+  end
+
+
 end

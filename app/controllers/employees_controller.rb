@@ -5,7 +5,15 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.ordering.page(params[:page])
+    if params[:search]
+      @employees = Buildingemployee.joins(employee: [:person]).includes(:building).search(params[:search]).group_by{|b| b.building_id}
+    elsif params[:char]
+      # @employees = Buildingemployee.select(:building_id,:employee_id).distinct.joins(employee: [:person]).search_char(params[:char]).includes(:building).group_by{|b| b.building_id}
+      @employees = Buildingemployee.joins(employee: [:person]).search_char(params[:char]).includes(:building).group_by{|b| b.building_id}
+    else
+      @employees = Buildingemployee.joins(employee: [:person]).order("lastname").group_by{|b| b.building_id}
+    end
+    # page(params[:page])
   end
 
   # GET /employees/1
@@ -30,6 +38,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     if @employee.save
+
       redirect_to @employee, notice: 'Сотрудник добавлен в базу.'
     else
       render :new

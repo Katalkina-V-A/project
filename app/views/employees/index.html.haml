@@ -1,19 +1,39 @@
 .page-header
-  %h1 Сотрудники
+  %h3 Сотрудники
 -if @current_user.try(:is_admin?)
   .btn-toolbar
     =link_to new_employee_path, class: 'btn btn-primary' do
       =fa_icon 'plus'
       Добавить
+= form_tag(employees_path, :method => "get") do
+  .form-group
+    .input-group
+      = text_field_tag :search, params[:search], placeholder: "Поиск", class: 'form-control'
+      .input-group-btn
+        = submit_tag 'Поиск', class: 'btn btn-primary'
+.row
+  .col-md-12
+    .pull-right
+      =button_to nil, class: 'btn btn-primary', style: "font-size: 12px; margin-top: -5px;" do
+        =fa_icon 'search'
+        Расширенный поиск
 -if @employees.blank?
   .alert.alert-info Сотрудников не найдено
 -else
-  .list-group
-    -@employees.each do |employee|
-      =link_to employee, class: 'list-group-item' do
-        .row
-          .col-md-8
-            =employee.person.lastname
-            .text-muted
-              =employee.person.firstname
-  =paginate @employees
+  %ul.nav.pagination
+    -Employee.includes(:person).map{|e| e.person.lastname[0]}.each do |i|
+      %li
+        =link_to i[0], employees_path(char: i[0]) , data: {method: :get}
+        -# countrysearch_index_path(search: i[0])
+  -@buildings = Building.ordering
+  -@employees.each do |building, employee_array|
+    %h4= @buildings.where(id: building).first.address
+    %hr
+    .list-group
+      -employee_array.each do |employee|
+        =link_to employee.employee, class: 'list-group-item' do
+          .row
+            .col-md-8
+              =employee.employee.person.lastname
+              .text-muted
+                =employee.post

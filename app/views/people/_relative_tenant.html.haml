@@ -20,9 +20,13 @@
         = fp.label :birthday
         = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}
     .col-md-4
-      .form-group
-        = fp.label :sex
-        = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control'
+      .form-inline
+        .form-group
+          = fp.label :sex
+          = fp.radio_button(:sex, "М")
+          Мужской
+          = fp.radio_button(:sex, "Ж")
+          Женский
   = fp.fields_for :relative do |s|
     .row
       .col-md-12

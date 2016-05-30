@@ -26,7 +26,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
-
+    # raise(@person.get_person.inspect)
     if @person.save
       redirect_to @person, notice: 'Жилец добавлен в базу.'
     else

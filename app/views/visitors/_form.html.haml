@@ -20,14 +20,18 @@
           = fp.label :birthday
           = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@visitor.person.birthday) if @visitor.person.birthday)
       .col-md-4
-        .form-group
-          = fp.label :sex
-          = fp.select :sex, [['','']] + Person::SEXES, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+        .form-inline
+          .form-group
+            = fp.label :sex
+            = fp.radio_button(:sex, "М")
+            Мужской
+            = fp.radio_button(:sex, "Ж")
+            Женский
   .row
     .col-md-6
       .form-group
         = f.label :document
-        = f.select :document, [['','']] + Visitor::DOCUMENTS, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+        = f.select :document, options_for_select(Visitor::DOCUMENTS), {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
     .col-md-6
       .form-group
         = f.label :numb
@@ -37,7 +41,7 @@
       .col-md-12
         .form-group
           =t.label :tenant_id
-          =t.select :tenant_id, Tenant.all.map{|c| [c.resident.person.lastname, c.id]}, {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+          =t.select :tenant_id, options_for_select(Tenant.all.map{|c| [c.resident.person.lastname, c.id]}), {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
     .row
       =t.hidden_field :arrivaldate, value: Date.today
       .col-md-6

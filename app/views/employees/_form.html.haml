@@ -10,7 +10,7 @@
       .col-md-6
         .form-group
           = u.label :role
-          = u.select :role, [['','']] + User::ROLES,{}, class: 'form-control selectpicker'
+          = u.select :role, options_for_select(User::ROLES),{}, title: "Ничего не выбрано", class: 'form-control selectpicker'
     =u.hidden_field :activation_state, value: "active"
     =u.hidden_field :password, value: "12345"
     =u.hidden_field :password_confirmation, value: "12345"
@@ -34,9 +34,15 @@
           = fp.label :birthday
           = fp.text_field :birthday, class: 'form-control', data: {masked: 'date'}, value: (l(@employee.person.birthday) if @employee.person.birthday)
       .col-md-4
-        .form-group
-          = fp.label :sex
-          = fp.select :sex, [['','']] + Person::SEXES, {}, class: 'form-control selectpicker'
+        .form-inline
+          .form-group
+            = fp.label :sex
+            = fp.radio_button(:sex, "М")
+            Мужской
+            = fp.radio_button(:sex, "Ж")
+            Женский
+  = f.fields_for :buildingemployees do |t|
+    =render 'buildingemployee_fields', :f => t
   .links
     =link_to_add_association "Добавить должность", f, :buildingemployees, class: 'btn btn-success'
   .form-actions

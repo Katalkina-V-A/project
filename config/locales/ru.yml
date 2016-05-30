@@ -40,7 +40,7 @@ ru:
       visitortenant: Посетители жильцов
       workman: Сотрудники института
     attributes:
-      building:
+      building: &building
         name: Наименование
         address: Адрес
         numb: Номер корпуса
@@ -50,7 +50,7 @@ ru:
         note: Примечание
         quantityroom: Число квартир
         rooms: Квартиры
-      buildingemployee:
+      buildingemployee: &buildingemployee
         employee_id: Сотрудник
         building_id: Корпус
         post: Должность
@@ -59,49 +59,49 @@ ru:
         startwork: Время начала работы
         endwork: Время окончания работы
         note: Примечание
-      employee:
+      employee: &employee
         person_id: Персона
-      furniture:
+      furniture: &furniture
         building_id: Корпус
         name: Наименование
         quantity: Количество
         size: Размеры
         note: Примечание
-      furnitureinroom:
+      furnitureinroom: &furnitureinroom
         furniture_id: Наименование
         room_id: Квартира
         quantity: Количество
-      guest:
+      guest: &guest
         person_id: Персона
         cause: Причина приезда/заселения
-      historymove:
+      historymove: &historymove
         tenant_id: Проживающий
         room_id: Квартира
         datein: Дата въезда
         dateout: Дата выезда
         note: Примечание
-      linen:
+      linen: &linen
         building_id: Корпус
         name: Наименование
         quantity: Количество
         size: Размеры
         note: Примечание
-      linenattenant:
+      linenattenant: &linenattenant
         tenant_id: Проживающий
         linen_id: Наименование
         quantity: Количество
-      person:
+      person: &person
         lastname: Фамилия
         firstname: Имя
         secondname: Отчество
         birthday: Дата рождения
         sex: Пол
-      relative:
+      relative: &relative
         person_id: Персона
         kin_id: Проживающий
         kin_type: Проживающий
         relationship: Родство
-      request:
+      request: &request
         employee_id: Кому
         historymove_id: От кого
         content: Текст заявки
@@ -109,7 +109,7 @@ ru:
         dateapp: Дата подачи
         dateanswer: Дата ответа
         answer: Ответ
-      room:
+      room: &room
         building_id: Корпус
         numb: Номер квартиры
         floor: Этаж
@@ -123,7 +123,7 @@ ru:
         accessory: Принадлежность комнаты
         accessoryfaculty: Факультет
         note: Примечание
-      student:
+      student: &student
         person_id: Персона
         faculty: Факультет
         typegroup: Тип обучения
@@ -132,7 +132,7 @@ ru:
         expirationdate: Дата окончания
         chair: Специальность
         course: Курс
-      tenant:
+      tenant: &tenant
         security: Отметка о технике безопасности
         phone: Телефон
         arrivaldate: Дата заселения
@@ -140,27 +140,79 @@ ru:
         note: Примечание
         resident_id: Тип жильца
         resident_type: Тип жильца
-      user:
+      user: &user
         email: Пользовательское имя/электронная почта
         role: Роль
         password: Пароль
         password_confirmation: Подтвердите пароль
-      visitor:
+      visitor: &visitor
         person_id: Персона
         document: Документ, подтверждающий личность
         numb: Номер документа
-      visitortenant:
+      visitortenant: &visitortenant
         tenant_id: К кому
         visitor_id: Посетитель
         arrivaldate: Дата входа
         arrivaltime: Время входа
         leavetime: Время выхода
         note: Примечание
-      workman:
+      workman: &workman
         person_id: Персона
         placejob: Место работы
         post: Должность
         phone: Рабочий телефон
+      person/student:
+        <<: *student
+      person/student/tenant:
+        <<: *tenant
+      person/student/tenant/user:
+        <<: *user
+      person/workman:
+        <<: *workman
+      person/workman/tenant:
+        <<: *tenant
+      person/workman/tenant/user:
+        <<: *user
+      person/guest:
+        <<: *guest
+      person/guest/tenant:
+        <<: *tenant
+      person/guest/tenant/user:
+        <<: *user
+      person/relative:
+        <<: *relative
+      person/relative/tenant:
+        <<: *tenant
+      person/relative/tenant/user:
+        <<: *user
+      person/student/tenant/historymoves:
+        <<: *historymove
+      person/workman/tenant/historymoves:
+        <<: *historymove
+      person/guest/tenant/historymoves:
+        <<: *historymove
+      person/relative/tenant/historymoves:
+        <<: *historymove
+      person/student/tenant/linenattenants:
+        <<: *linenattenant
+      person/workman/tenant/linenattenants:
+        <<: *linenattenant
+      person/guest/tenant/linenattenants:
+        <<: *linenattenant
+      person/relative/tenant/linenattenants:
+        <<: *linenattenant
+      person/employee:
+        <<: *employee
+      person/visitor:
+        <<: *visitor
+      visitor/visitortenants:
+        <<: *visitortenant
+      employee/user:
+        <<: *user
+      employee/buildingemployees:
+        <<: *buildingemployee
+      room/furnitureinrooms:
+        <<: *furnitureinroom
     errors:
       models:
         person:

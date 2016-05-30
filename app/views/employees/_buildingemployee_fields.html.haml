@@ -6,7 +6,9 @@
         .col-md-12
           .form-group
             =f.label :building_id
-            =f.select :building_id, options_for_select(Building.all.map{|b| [b.name, b.id]}), {},title: "Ничего не выбрано", class: 'form-control selectpicker'
+            =f.select :building_id, options_for_select(Building.all.map{|b| [b.name, b.id]}),{},
+              title: "Ничего не выбрано", class: 'form-control selectpicker',
+              data: {value: (tmp = params.try('[]', :employee).try('[]', :buildingemployee).try('[]', :building_id)).nil? ? f.object.building_id : tmp}
       .row
         .col-md-4
           .form-group
@@ -26,6 +28,7 @@
             =f.label :startwork
             .input-group.date.timepicker
               =f.text_field :startwork, class: 'form-control'
+              -# value: (l(@employee.buildingemployee.startwork) if @employee.buildingemployee.startwork)
               %span.input-group-addon
                 %span.glyphicon.glyphicon-calendar
         .col-md-6
@@ -40,4 +43,5 @@
           .form-group
             =f.label :note
             =f.text_area :note, class: 'form-control'
-      =link_to_remove_association "Удалить", f, class: 'btn btn-danger'
+      .form-group
+        =link_to_remove_association "Удалить", f, class: 'btn btn-danger'

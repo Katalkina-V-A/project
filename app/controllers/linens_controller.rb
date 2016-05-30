@@ -1,6 +1,6 @@
 class LinensController < ApplicationController
-  before_action :check_level_three, only: [:show]
-  before_action :check_level_four, only: [:index, :edit, :create, :new, :update]
+  before_action :check_level_three, only: [:show, :index]
+  before_action :check_level_four, only: [:edit, :create, :new, :update]
   before_action :check_admin, only: [:destroy]
   before_action :set_linen, only: [:show, :edit, :update, :destroy]
 
@@ -12,6 +12,8 @@ class LinensController < ApplicationController
       @linens = Linen.where(building_id: array).order(:building_id).ordering.page(params[:page])
     elsif @current_user.try(:is_admin?)
       @linens = Linen.ordering.page(params[:page])
+    elsif @current_user.try(:is_tenant?)
+      @linens = Linen.joins(:tenants).where(linenattenants: {tenant: @current_user.client}).page(params[:page])
     end
   end
 

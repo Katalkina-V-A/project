@@ -34,6 +34,18 @@ class Person < ActiveRecord::Base
     end
   end
 
+  def person_class_label
+    if !self.student.nil?
+      :student
+    elsif !self.workman.nil?
+      :workman
+    elsif !self.relative.nil?
+      :relative
+    elsif !self.guest.nil?
+      :guest
+    end
+  end
+
   private
   def check_birthday
     errors.add(:birthday, :invalid) if birthday && birthday > Date.today

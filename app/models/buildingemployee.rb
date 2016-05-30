@@ -6,7 +6,13 @@ class Buildingemployee < ActiveRecord::Base
   validates :building_id, uniqueness: {scope: [:employee_id, :post]}
   validate :check_interval
   validates :note, length: {minimum: 6}, allow_blank: true
+  def self.search(search)
+     where("upper(lastname) like upper(:q) or upper(firstname) like upper(:q)", q: "%#{search}%")
+  end
 
+  def self.search_char(search)
+    where("lastname like (:q)", q: "#{search}%")
+  end
   private
 
   def check_interval

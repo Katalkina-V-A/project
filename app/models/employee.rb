@@ -12,7 +12,6 @@ class Employee < ActiveRecord::Base
   has_many :buildings, through: :buildingemployees
   accepts_nested_attributes_for :buildingemployees, allow_destroy: true
 
-  scope :ordering, -> { includes(:person).order("people.lastname") }
+  scope :ordering, -> { includes(:buildings).order("buildings.id").includes(:person).order("people.lastname") }
   validates :person_id, uniqueness: true
-
 end

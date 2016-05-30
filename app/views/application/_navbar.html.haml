@@ -90,7 +90,17 @@
             =link_to requests_path do
               =fa_icon 'send'
               Заявки
-              %span.badge 1,118
+              -if @current_user.try(:is_tenant?)
+                %span.badge
+                  100
+              -elsif @current_user.try(:is_admin?)
+                %span.badge
+                  =Request.where(status: 0).count
+              -else
+                -val = Request.where(employee: @current_user.client).where(status: 0).count
+                -if val !=0
+                  %span.badge
+                    =val
           %li
             =link_to logout_path do
               = fa_icon 'sign-out'
