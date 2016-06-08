@@ -14,7 +14,7 @@
 .row
   .col-md-12
     .pull-right
-      =button_to nil, class: 'btn btn-primary', style: "font-size: 12px; margin-top: -5px;" do
+      =link_to search_path, class: 'btn btn-primary', style: "font-size: 12px; margin-top: -5px;" do
         =fa_icon 'search'
         Расширенный поиск
 -if @employees.blank?

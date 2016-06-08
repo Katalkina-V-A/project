@@ -32,7 +32,8 @@
       .col-md-6
         .form-group
           =s.label :faculty
-          =s.select :faculty,options_for_select(Student::FACULTIES), {}, title: "Ничего не выбрано", class: 'form-control selectpicker', data: {value: (tmp = params.try('[]', :person).try('[]', :student).try('[]', :faculty)).nil? ? s.object.faculty : tmp}
+          =s.select :faculty,options_for_select(Student::FACULTIES), {}, title: "Ничего не выбрано", class: 'form-control selectpicker',
+            data: {value: (tmp = params.try('[]', :person).try('[]', :student).try('[]', :faculty)).nil? ? s.object.faculty : tmp}
       .col-md-6
         .form-group
           =s.label :chair
@@ -41,7 +42,8 @@
       .col-md-4
         .form-group
           =s.label :typegroup
-          =s.text_field :typegroup, class: 'form-control'
+          =s.select :typegroup,options_for_select(Student::TYPEGROUPS), {}, title: "Ничего не выбрано", class: 'form-control selectpicker',
+            data: {value: (tm = params.try('[]', :person).try('[]', :student).try('[]', :typegroup)).nil? ? s.object.typegroup : tm}
       .col-md-4
         .form-group
           =s.label :course
@@ -92,7 +94,7 @@
           .form-group
             = f.label :arrivaldate
             .input-group.date.datepicker
-              = f.text_field :arrivaldate, class: 'form-control'
+              = f.text_field :arrivaldate, class: 'form-control', value: (l(@person.student.tenant.arrivaldate) if @person.student.tenant.arrivaldate)
               %span.input-group-addon
                 %span.glyphicon.glyphicon-calendar
         .col-md-6

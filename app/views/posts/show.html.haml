@@ -1,0 +1,39 @@
+.page-header
+  %h3
+    =@post.title
+  .pull-right
+    %i.text-muted
+      =l(@post.created_at, format: :long)
+-if @current_user.try(:is_admin?)
+  =render 'menu'
+.row
+  .col-md-12
+    .well
+      =@post.body
+
+-if @post.pictures.present?
+  %h4
+    Фотографии
+  %hr
+  .row
+    -@post.pictures.each do |picture|
+      .col-md-3
+        =image_tag(picture.image.url(:medium), alt: picture.title, class: 'img-responsive')
+  -# .carousel.slide{:id=>"slide-images", :data => {:ride => "carousel"}}
+  -#   %ol.carousel-indicators
+  -#     -@post.pictures.each do |i|
+  -#       %li{:data => {:target => "slide-images", :slide_to => i.position - 1}, class: i.position-1 == 0 ? 'active' : nil}
+  -#   .carousel-inner
+  -#     -@post.pictures.each do |picture|
+  -#       -if picture.position-1 == 0
+  -#         .item.active
+  -#           -# =image_tag('logo.png', class: 'img-responsive')
+  -#           =image_tag(picture.image.url(:medium), alt: picture.title, class: 'img-responsive')
+  -#       -else
+  -#         .item
+  -#           -# =image_tag('logo.png', class: 'img-responsive')
+  -#           =image_tag(picture.image.url(:medium), alt: picture.title, class: 'img-responsive')
+  -#   %a.left.carousel-control{:href => "#slide-images", :data => {:slide => "prev"}}
+  -#     %span.glyphicon.glyphicon-chevron-left
+  -#   %a.right.carousel-control{:href => "#slide-images", :data => {:slide => "next"}}
+  -#     %span.glyphicon.glyphicon-chevron-right

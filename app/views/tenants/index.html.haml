@@ -1,13 +1,30 @@
 .page-header
-  %h1 Жильцы
+  %h3 Жильцы
 -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
   .btn-toolbar
     =link_to new_person_path, class: 'btn btn-primary' do
       =fa_icon 'plus'
       Добавить
+= form_tag(tenants_path, :method => "get") do
+  .form-group
+    .input-group
+      = text_field_tag :search, params[:search], placeholder: "Поиск", class: 'form-control'
+      .input-group-btn
+        = submit_tag 'Поиск', class: 'btn btn-primary'
+.row
+  .col-md-12
+    .pull-right
+      =link_to nil, class: 'btn btn-primary', style: "font-size: 12px; margin-top: -5px;" do
+        =fa_icon 'search'
+        Расширенный поиск
 -if @tenants.blank?
   .alert.alert-info Проживающие не найдены
 -else
+  %ul.nav.pagination
+    -Tenant.includes(resident: [:person]).map{|t| t.resident.person.lastname[0]}.uniq.sort.each do |i|
+      %li
+        =link_to i[0], tenants_path(char: i[0]) , data: {method: :get}
+        -# countrysearch_index_path(search: i[0])
   .list-group
     -@tenants.each do |tenant|
       =link_to tenant.resident.person, class: 'list-group-item' do

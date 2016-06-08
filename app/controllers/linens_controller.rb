@@ -70,6 +70,6 @@ class LinensController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def linen_params
-      params.require(:linen).permit(:building_id, :name, :quantity, :size, :note)
+      params.require(:linen).permit(:building_id, :name, :quantity, :size, :note, files: [])
     end
 end

@@ -24,6 +24,10 @@ class Tenant < ActiveRecord::Base
   validates :arrivaldate, :checkoutdate, presence: true
   validate :check_interval
 
+def self.search(search)
+
+end
+
   private
 
   def check_interval

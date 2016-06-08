@@ -68,9 +68,9 @@
           -else
             -if @current_user.try(:is_tenant?)
               %li
-                =link_to @current_user.client.historymoves.last.room do
-                  =fa_icon 'cubes'
-                  Квартира
+                -# =link_to @current_user.client.historymoves.last.room do
+                -#   =fa_icon 'cubes'
+                -#   Квартира
             -else
               %li
                 =link_to rooms_path do
@@ -101,6 +101,14 @@
                 -if val !=0
                   %span.badge
                     =val
+          %li
+            =link_to documents_path do
+              =fa_icon 'send'
+              Документы
+          %li
+            =link_to posts_path do
+              =fa_icon 'send'
+              Новости
           %li
             =link_to logout_path do
               = fa_icon 'sign-out'

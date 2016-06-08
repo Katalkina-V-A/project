@@ -29,3 +29,16 @@ dtpick = ->
   false
 $(document).ready dtpick
 $(document).on 'page:load', dtpick
+
+ready = ->
+  $("[data-toggle='popover']").popover()
+$(document).ready ready
+$(document).on 'page:load', ready
+
+# $(document).ready(carousel()
+#   $('#slide-images .carousel-inner > .item:first').addClass('active')
+# )
+carous = ->
+  $('#slide-images').carousel()
+$(document).ready carous
+$(document).on 'page:load', carous

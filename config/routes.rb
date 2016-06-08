@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  resources :posts
+  resources :documents
+  get 'search/index', as: :search
+
   resources :tenants
   resources :requests
   resources :employees

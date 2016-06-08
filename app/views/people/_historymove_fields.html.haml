@@ -9,13 +9,12 @@
             =f.label :room_id
             =f.select :room_id, options_for_select(Room.all.map{|r| [r.numb, r.id]}), {},
               title: "Ничего не выбрано", class: 'form-control selectpicker'
-              -# data: {value: ((tmp = params.try('[]', :person).try('[]', :try('[]', :tenant).try('[]', :historymove).try('[]', :room_id)).nil? ? f.object.room_id : tmp)}
       .row
         .col-md-6
           .form-group
             = f.label :datein
             .input-group.date.datepicker
-              =f.text_field :datein, class: 'form-control', data: {value: (l(f.object.datein) if !f.object.datein.nil?)}
+              =f.text_field :datein, class: 'form-control', value: (l(@person.get_person.tenant.historymoves.first.datein) if @person.get_person.tenant.historymoves.first.datein)
               %span.input-group-addon
                 %span.glyphicon.glyphicon-calendar
         .col-md-6

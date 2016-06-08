@@ -35,9 +35,7 @@
     .col-md-6
       .form-group
         = f.label :state
-        = f.select :state, options_for_select(Building::STATES), {},
-          title: "Ничего не выбрано", class: 'form-control selectpicker',
-          data: {value: (tmp = params.try('[]', :building).try('[]', :state)).nil? ? f.object.state : tmp}
+        = f.select :state, options_for_select([['','']]+Building::STATES), {}, title: "Ничего не выбрано", class: 'form-control selectpicker', data: {value: (tmp = params.try('[]', :building).try('[]', :state)).nil? ? f.object.state : tmp}
   .row
     .col-md-12
       .form-group

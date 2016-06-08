@@ -1,0 +1,17 @@
+= form_for @document do |f|
+  =f.hidden_field :post_id
+  =error_messages_for(@document)
+  .row
+    .col-md-12
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        =f.label :doc
+        -if @document.doc.present?
+          =link_to show_attachment(@document), @document.doc.url
+        =f.file_field :doc
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'

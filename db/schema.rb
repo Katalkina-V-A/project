@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526120246) do
+ActiveRecord::Schema.define(version: 20160608094960) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 20160526120246) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.string   "title"
+    t.integer  "post_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "documents", ["post_id"], name: "index_documents_on_post_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.integer  "person_id",  null: false
@@ -157,6 +170,33 @@ ActiveRecord::Schema.define(version: 20160526120246) do
   end
 
   add_index "people", ["lastname", "firstname", "secondname", "birthday"], name: "indexpeople", unique: true, using: :btree
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.integer  "position"
+    t.string   "title"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "building_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "posts", ["building_id"], name: "index_posts_on_building_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "relatives", force: :cascade do |t|
     t.integer  "person_id",    null: false
@@ -321,6 +361,7 @@ ActiveRecord::Schema.define(version: 20160526120246) do
 
   add_foreign_key "buildingemployees", "buildings"
   add_foreign_key "buildingemployees", "employees"
+  add_foreign_key "documents", "posts"
   add_foreign_key "employees", "people"
   add_foreign_key "furnitureinrooms", "furnitures"
   add_foreign_key "furnitureinrooms", "rooms"
@@ -331,6 +372,8 @@ ActiveRecord::Schema.define(version: 20160526120246) do
   add_foreign_key "linenattenants", "linens"
   add_foreign_key "linenattenants", "tenants"
   add_foreign_key "linens", "buildings"
+  add_foreign_key "posts", "buildings"
+  add_foreign_key "posts", "users"
   add_foreign_key "relatives", "people"
   add_foreign_key "requests", "employees"
   add_foreign_key "requests", "historymoves"

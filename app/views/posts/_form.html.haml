@@ -1,0 +1,23 @@
+= form_for @post do |f|
+  =f.hidden_field :user_id, value: !@post.user_id.nil? ? @post.user_id : @current_user.id
+  =error_messages_for(@post)
+  .form-group
+    = f.label :building_id
+    = f.select :building_id, options_for_select(Building.ordering.map{|b| [b.name, b.id]}),{}, class: 'form-control selectpicker'
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: 'form-control'
+  .form-group
+    =f.label :files
+    %ol
+      -@post.pictures.each do |attachment|
+        %li=link_to_image attachment
+    =f.file_field :files, multiple: true
+  .form-group
+    =f.label :document
+    =f.file_field :document
+  .form-actions.long
+    = f.submit nil, class: 'btn btn-primary'
