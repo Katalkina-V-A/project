@@ -5,7 +5,7 @@ class TenantsController < ApplicationController
     if @current_user.try(:is_admin?)
       # if params[:search]
 
-        @tenants = Tenant.page(params[:page])
+        @tenants = Tenant.includes(resident: [:person]).group_by{|t| t.resident.person.lastname[0]}.sort
     else
       array = @current_user.client.buildings.ids
       @tenants = Tenant.joins(rooms: [:building]).where(rooms: {building_id: array}).distinct.ordering.page(params[:page])

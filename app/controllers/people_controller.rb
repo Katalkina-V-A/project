@@ -93,24 +93,24 @@ class PeopleController < ApplicationController
     def person_params
       params.require(:person).permit(:lastname, :firstname, :secondname, :birthday, :sex,
         workman_attributes: [:id, :person_id, :placejob, :post, :phone,
-        {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+        {tenant_attributes: [:id, :avatar, :security, :phone, :arrivaldate, :checkoutdate,
       :note, :resident_id, :resident_type, {
         user_attributes: [:password, :password_confirmation, :activation_state,:id, :email, :role, :client_id, :client_type],
         historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
         linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
         student_attributes: [:id, :person_id, :faculty, :typegroup, :group, :course, :chair,
-        :receiptdate, :expirationdate, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+        :receiptdate, :expirationdate, {tenant_attributes: [:id, :avatar, :security, :phone, :arrivaldate, :checkoutdate,
       :note, :resident_id, :resident_type, {user_attributes: [:password, :password_confirmation, :activation_state, :id, :email, :role, :client_id, :client_type],
           historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
           linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
-        guest_attributes: [:id, :person_id, :cause,{tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+        guest_attributes: [:id, :person_id, :cause,{tenant_attributes: [:id, :avatar, :security, :phone, :arrivaldate, :checkoutdate,
       :note, :resident_id, :resident_type, {user_attributes: [:password, :password_confirmation, :activation_state, :id, :email, :role, :client_id, :client_type],
           historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
           linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}],
 
-        relative_attributes: [:id, :person_id, :relationship, :kin_id, :kin_type, {tenant_attributes: [:id, :security, :phone, :arrivaldate, :checkoutdate,
+        relative_attributes: [:id, :person_id, :relationship, :kin_id, :kin_type, {tenant_attributes: [:id, :avatar, :security, :phone, :arrivaldate, :checkoutdate,
       :note, :resident_id, :resident_type, {user_attributes: [:password, :password_confirmation, :activation_state, :id, :email, :role, :client_id, :client_type],
           historymoves_attributes: [:id, :_destroy, :tenant_id, :room_id, :datein, :dateout, :note],
           linenattenants_attributes: [:id, :_destroy, :tenant_id, :linen_id, :quantity]}]}]

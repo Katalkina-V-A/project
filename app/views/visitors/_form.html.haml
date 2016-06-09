@@ -27,30 +27,30 @@
             Мужской
             = fp.radio_button(:sex, "Ж")
             Женский
-  .row
-    .col-md-6
-      .form-group
-        = f.label :document
-        = f.select :document, options_for_select(Visitor::DOCUMENTS), {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
-    .col-md-6
-      .form-group
-        = f.label :numb
-        = f.text_field :numb, class: 'form-control'
   = f.fields_for :visitortenants do |t|
     .row
-      .col-md-12
+      .col-md-4
         .form-group
-          =t.label :tenant_id
-          =t.select :tenant_id, options_for_select(Tenant.all.map{|c| [c.resident.person.lastname, c.id]}), {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
-    .row
-      =t.hidden_field :arrivaldate, value: Date.today
-      .col-md-6
+          = f.label :document
+          = f.select :document, options_for_select(Visitor::DOCUMENTS), {}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+      .col-md-4
+        .form-group
+          = f.label :numb
+          = f.text_field :numb, class: 'form-control'
+
+      .col-md-4
+        =t.hidden_field :arrivaldate, value: Date.today
         .form-group
           =t.label :arrivaltime
           .input-group.date.timepicker
             =t.text_field :arrivaltime, class: 'form-control'
             %span.input-group-addon
               %span.glyphicon.glyphicon-calendar
+    .row
+      .col-md-12
+        .form-group
+          =t.label :tenant_id
+          =t.select :tenant_id, options_for_select(Tenant.all.map{|c| [Tenant.niceselect(c), c.id, {data: {subtext: [l(c.resident.person.birthday, format: :long)," проживает в #{c.resident_type}"]}}]}), {}, title: "Ничего не выбрано", class: 'form-control selectpicker', "data-live-search" => "true"
     .row
       .col-md-12
         .form-group

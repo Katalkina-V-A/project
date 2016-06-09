@@ -1,4 +1,6 @@
 class Employee < ActiveRecord::Base
+  has_attached_file :avatar, styles: {large: "500x500", medium: "250x250>", thumb: "100x100>"}
+  validates_attachment :avatar, content_type: {content_type: /\Aimage\/.*\z/}
   belongs_to :person, -> { ordering }
   accepts_nested_attributes_for :person
 

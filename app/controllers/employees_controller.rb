@@ -71,7 +71,7 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:person_id,
+      params.require(:employee).permit(:person_id, :avatar,
       person_attributes: [:id, :lastname, :firstname, :secondname, :birthday, :sex],
       user_attributes: [:password, :password_confirmation, :activation_state,:id, :email, :role, :client_id, :client_type],
       buildingemployees_attributes: [:id, :_destroy, :building_id, :post, :employee_id,

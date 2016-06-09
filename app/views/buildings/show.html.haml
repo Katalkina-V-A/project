@@ -1,26 +1,70 @@
 .page-header
-  %h1
+  %h3
     =@building.name
-  %span.text-muted
-    %h4
+  %i.text-muted
+    %h5
       =@building.address
+      , Москва, 115478
       =surround ?(,?) do
+        корпус
         =@building.numb if @building.numb
 -if @current_user.try(:is_admin?)
   =render 'menu'
 
 .row
-  .col-md-4
-    =Building.human_attribute_name(:floor)
-    =@building.floor
-
--if @building.rooms.any?
-  %h3=Building.human_attribute_name(:rooms)
-  .list-group
-    -@building.rooms.each do |room|
-      =link_to room, class: 'list-group-item' do
-        =room.numb
-        .text-muted
-          =room.building_id
--else
-  .alert.alert-info Квартиры не найдены
+  .col-md-6
+    .well
+      Тип корпуса:
+      %i.text-muted
+        =Building::TYPEBUILDS[@building.typebuild.first][0]
+      %br
+      Число этажей:
+      %i.text-muted
+        =@building.floor
+      %br
+      Состояние:
+      %i.text-muted
+        =Building::STATES[@building.state][0]
+      %br
+      Количество квартир:
+      %i.text-muted
+        =@building.quantityroom
+      %br
+      Количество свободных мест:
+      %i.text-muted
+        24
+      %br
+      Примечание:
+      %br
+      %i.text-muted
+        =@building.note
+  .col-md-6
+    .list-group
+      -@building.employees.each do |employee|
+        =link_to employee, class: 'list-group-item' do
+          .media
+            -if employee.avatar?
+              .media-left=image_tag employee.avatar.url(:thumb), alt: employee.user.email, class: 'media-object'
+            .media-body
+              %h5.media-heading
+                =employee.person.lastname
+                =employee.person.firstname
+                =employee.person.secondname
+              %span.text-muted
+                %i=employee.buildingemployees.first.post
+%h4 Фотогалерея
+.row
+  -@building.pictures.each do |picture|
+    .col-md-3
+      %a{:href => picture.image.url}
+        =image_tag(picture.image.url(:medium), alt: picture.title, class: 'img-responsive')
+-# -if @building.rooms.any?
+-#   %h3=Building.human_attribute_name(:rooms)
+-#   .list-group
+-#     -@building.rooms.each do |room|
+-#       =link_to room, class: 'list-group-item' do
+-#         =room.numb
+-#         .text-muted
+-#           =room.building_id
+-# -else
+-#   .alert.alert-info Квартиры не найдены

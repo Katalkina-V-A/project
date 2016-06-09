@@ -1,5 +1,11 @@
 class Tenant < ActiveRecord::Base
+  has_attached_file :avatar, styles: {large: "500x500>", medium: "250x250>", thumb: "50x50>"}
+  validates_attachment :avatar, content_type: {content_type: /\Aimage\/.*\z/}
   belongs_to :resident, polymorphic: true
+  belongs_to :student, -> { where(tenants: {resident_type: 'Student'}) }, foreign_key: 'resident_id'
+  belongs_to :relative, -> { where(tenants: {resident_type: 'Relative'}) }, foreign_key: 'resident_id'
+  belongs_to :workman, -> { where(tenants: {resident_type: 'Workmen'}) }, foreign_key: 'resident_id'
+  belongs_to :guest, -> { where(tenants: {resident_type: 'Guest'}) }, foreign_key: 'resident_id'
 
   has_one :user, as: :client
   accepts_nested_attributes_for :user
@@ -19,15 +25,35 @@ class Tenant < ActiveRecord::Base
 
   scope :ordering, -> { order(created_at: :desc) }
 
-  validates :phone, presence: true
+  # validates :phone, presence: true
   validates :note, length: {minimum: 6}, allow_blank: true
   validates :arrivaldate, :checkoutdate, presence: true
   validate :check_interval
 
-def self.search(search)
+  def self.search(search)
 
-end
-
+  end
+  def check_date_move
+    if self.checkoutdate<Date.today
+      "Срок договора истек"
+    elsif self.checkoutdate-Date.today<=3
+      "Срок договора истекает через #{(self.checkoutdate-Date.today).to_i} дня"
+    end
+  end
+  def check_resident_type
+    if self.resident_type == 'Student'
+      "О"
+    elsif self.resident_type == "Workman"
+      "С"
+    elsif self.resident_type == "Guest"
+      "Г"
+    elsif self.resident_type == "Relative"
+      "Р"
+    end
+  end
+  def self.niceselect(tenant)
+    "#{tenant.resident.person.lastname} #{tenant.resident.person.firstname} #{tenant.resident.person.secondname}"
+  end
   private
 
   def check_interval

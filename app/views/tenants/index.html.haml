@@ -26,11 +26,26 @@
         =link_to i[0], tenants_path(char: i[0]) , data: {method: :get}
         -# countrysearch_index_path(search: i[0])
   .list-group
-    -@tenants.each do |tenant|
-      =link_to tenant.resident.person, class: 'list-group-item' do
-        .row
-          .col-md-8
-            =tenant.resident.person.lastname
-            .text-muted
-              =tenant.resident.person.firstname
-  =paginate @tenants
+    -@tenants.each do |char, tenant_array|
+      -tenant_array.each do |tenant|
+        .list-group-item{class: tenant.checkoutdate<Date.today ? "list-group-item-danger" : (tenant.checkoutdate-Date.today<=3 ? "list-group-item-warning" : nil)}
+          =link_to tenant.resident.person do
+            .media
+              -if tenant.avatar?
+                .media-left=image_tag tenant.avatar.url(:thumb), alt: tenant.user.email, class: 'media-object'
+              .media-body
+                %h5.media-heading
+                  =tenant.resident.person.lastname
+                  =tenant.resident.person.firstname
+                  =tenant.resident.person.secondname
+                %span.text-muted
+                  %i=tenant.check_date_move
+              .media-right{style: "vertical-align: middle;"}
+                .list-label.primary
+                  = tenant.check_resident_type
+                  -if tenant.historymoves.any?
+                    =tenant.historymoves.last.room.numb
+                .clearfix
+                .list-label.primary
+                  =tenant.resident_id
+                .clearfix

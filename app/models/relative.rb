@@ -8,5 +8,5 @@ class Relative < ActiveRecord::Base
   scope :ordering, -> { includes(:person).order("people.lastname") }
 
   validates :person_id, uniqueness: true
-  validates :relationship, presence: true
+  # validates :relationship, presence: true
 end

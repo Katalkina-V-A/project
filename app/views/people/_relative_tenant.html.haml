@@ -40,6 +40,11 @@
           =s.label :relationship
           =s.text_field :relationship, class: 'form-control'
     = s.fields_for :tenant do |f|
+      .row
+        .col-md-6
+          .form-group
+            =f.label :avatar
+            =f.file_field :avatar
       =f.fields_for :user do |u|
         .row
           .col-md-12

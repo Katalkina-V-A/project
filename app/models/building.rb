@@ -1,7 +1,8 @@
 class Building < ActiveRecord::Base
   before_validation :prepare_typebuild
   has_many :rooms, dependent: :destroy
-
+  has_many :pictures, as: :imageable
+  accepts_nested_attributes_for :pictures
   has_many :buildingemployees, dependent: :destroy
   has_many :employees, through: :buildingemployees
 
@@ -19,11 +20,18 @@ class Building < ActiveRecord::Base
   # validates :state, inclusion: { in: STATES }
   # validates :typebuild, inclusion: { in: TYPEBUILDS }
 
-
-
   TYPEBUILDS = [['Квартирный',0], ['Коридорный',1], ['Блочный',2]]
 
   STATES = [['Жилой',0], ['Ремонт',1], ['Строительство',2]]
+
+  attr_reader :files
+
+  def files=(val)
+    val.each_with_index do |file, i|
+      self.pictures.build(image: file, position: pictures.maximum(:position).to_i + i + 1)
+    end
+  end
+
   def prepare_typebuild
     if self.typebuild.kind_of?(Array)
       self.typebuild = self.typebuild.select{|t| !t.blank?}.map(&:to_i)

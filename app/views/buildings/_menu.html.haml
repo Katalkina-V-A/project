@@ -2,6 +2,9 @@
   =link_to edit_building_path(@building), class: 'btn btn-primary' do
     =fa_icon 'edit'
     Редактировать
+  =link_to rooms_path(build: @building.id), data: {method: :get}, class: 'btn btn-success' do
+    =fa_icon 'table'
+    Список комнат
   =link_to @building, data: {method: :delete, confirm: t('helpers.sure')}, class: 'btn btn-danger' do
-    =fa_icon 'trash'
+    =fa_icon 'trash-o'
     Удалить

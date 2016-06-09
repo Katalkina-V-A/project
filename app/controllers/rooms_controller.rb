@@ -9,7 +9,11 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     if @current_user.try(:is_admin?)
-      @rooms = Room.order(:building_id).ordering.page(params[:page])
+      if params[:build]
+        @rooms = Room.where(building_id: params[:build]).ordering.page(params[:page])
+      else
+        @rooms = Room.order(:building_id).ordering.page(params[:page])
+      end
     else
       array = @current_user.client.buildings.ids
       @rooms = Room.where(building_id: array).order(:building_id).ordering.page(params[:page])

@@ -1,6 +1,7 @@
 class CreateTenants < ActiveRecord::Migration
   def change
     create_table :tenants do |t|
+      t.attachment :avatar
       t.boolean :security
       t.string :phone
       t.date :arrivaldate

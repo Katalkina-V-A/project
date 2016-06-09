@@ -78,9 +78,13 @@ ActiveRecord::Schema.define(version: 20160608094960) do
   add_index "documents", ["post_id"], name: "index_documents_on_post_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "person_id",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "person_id",           null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   add_index "employees", ["person_id"], name: "index_employees_on_person_id", using: :btree
@@ -263,15 +267,19 @@ ActiveRecord::Schema.define(version: 20160608094960) do
   add_index "students", ["person_id"], name: "index_students_on_person_id", using: :btree
 
   create_table "tenants", force: :cascade do |t|
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.boolean  "security"
     t.string   "phone"
     t.date     "arrivaldate"
     t.date     "checkoutdate"
     t.text     "note"
-    t.integer  "resident_id",   null: false
-    t.string   "resident_type", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "resident_id",         null: false
+    t.string   "resident_type",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   add_index "tenants", ["resident_type", "resident_id"], name: "index_tenants_on_resident_type_and_resident_id", using: :btree

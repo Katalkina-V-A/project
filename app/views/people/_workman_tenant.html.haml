@@ -43,6 +43,11 @@
           =s.label :phone
           =s.text_field :phone, class: 'form-control', data: {masked: 'phone'}
     = s.fields_for :tenant do |f|
+      .row
+        .col-md-6
+          .form-group
+            =f.label :avatar
+            =f.file_field :avatar
       =f.fields_for :user do |u|
         .row
           .col-md-12

@@ -147,7 +147,7 @@ ru:
         password_confirmation: Подтвердите пароль
       visitor: &visitor
         person_id: Персона
-        document: Документ, подтверждающий личность
+        document: Документ
         numb: Номер документа
       visitortenant: &visitortenant
         tenant_id: К кому

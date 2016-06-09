@@ -14,17 +14,16 @@
 .row
   .col-md-12
     .pull-right
-      =link_to search_path, class: 'btn btn-primary', style: "font-size: 12px; margin-top: -5px;" do
+      =link_to search_path, class: 'btn btn-primary', style: "font-size: 12px; margin-top: -11px;" do
         =fa_icon 'search'
         Расширенный поиск
 -if @employees.blank?
   .alert.alert-info Сотрудников не найдено
 -else
   %ul.nav.pagination
-    -Employee.includes(:person).map{|e| e.person.lastname[0]}.each do |i|
+    -Employee.includes(:person).map{|e| e.person.lastname[0]}.uniq.sort.each do |i|
       %li
         =link_to i[0], employees_path(char: i[0]) , data: {method: :get}
-        -# countrysearch_index_path(search: i[0])
   -@buildings = Building.ordering
   -@employees.each do |building, employee_array|
     %h4= @buildings.where(id: building).first.address

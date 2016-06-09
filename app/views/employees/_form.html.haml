@@ -1,5 +1,14 @@
 = form_for @employee do |f|
   =error_messages_for @employee
+  .row
+    .col-md-6
+      .form-group
+        =f.label :avatar
+        =f.file_field :avatar
+      -if @employee.avatar?
+        .text-center
+          =link_to @employee.avatar.url do
+            =image_tag @employee.avatar.url(:thumb), alt: Employee.human_attribute_name(:avatar)
   =f.fields_for :user do |u|
     .row
       .col-md-6
@@ -7,10 +16,11 @@
           = u.label :email
           = u.text_field :email, class: 'form-control'
           = u.error_messages_for(:email)
-      .col-md-6
-        .form-group
-          = u.label :role
-          = u.select :role, options_for_select(User::ROLES),{}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+      -# .col-md-6
+      -#   .form-group
+      -#     = u.label :role
+      -#     = u.select :role, options_for_select(User::ROLES),{}, title: "Ничего не выбрано", class: 'form-control selectpicker'
+    =u.hidden_field :role, value: 1
     =u.hidden_field :activation_state, value: "active"
     =u.hidden_field :password, value: "12345"
     =u.hidden_field :password_confirmation, value: "12345"
