@@ -50,7 +50,8 @@
       .col-md-12
         .form-group
           =t.label :tenant_id
-          =t.select :tenant_id, options_for_select(Tenant.all.map{|c| [Tenant.niceselect(c), c.id, {data: {subtext: [l(c.resident.person.birthday, format: :long)," проживает в #{c.resident_type}"]}}]}), {}, title: "Ничего не выбрано", class: 'form-control selectpicker', "data-live-search" => "true"
+          =t.select :tenant_id, options_for_select(Tenant.all.map{|c| [Tenant.niceselect(c), c.id, {data: {subtext: [l(c.resident.person.birthday, format: :long)," проживает в квартире #{c.historymoves.last.room.numb} (корпус #{c.historymoves.last.room.building.numb})"]}}]}),
+          {}, title: "Ничего не выбрано", class: 'form-control selectpicker', "data-live-search" => "true"
     .row
       .col-md-12
         .form-group

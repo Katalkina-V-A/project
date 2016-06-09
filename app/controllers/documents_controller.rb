@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.page(params[:page])
+    @documents = Document.ordering.page(params[:page])
   end
 
   # GET /documents/new
@@ -22,7 +22,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
 
     if @document.save
-      redirect_to documents_url, notice: 'Сотрудник добавлен в базу.'
+      redirect_to documents_url, notice: 'Документ успешно добавлен.'
     else
       render :new
     end

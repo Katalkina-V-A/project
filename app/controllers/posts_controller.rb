@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.ordering.page(params[:page])
+    if params[:search]
+      @posts = Post.search(params[:search]).ordering.page(params[:page])
+    else
+      @posts = Post.ordering.page(params[:page])
+    end
   end
 
   # GET /posts/1

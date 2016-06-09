@@ -1,4 +1,7 @@
 ru:
+  time:
+   formats:
+     time: "%H:%M"
   app:
     name: Общежитие
     company:

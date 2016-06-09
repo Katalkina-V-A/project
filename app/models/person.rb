@@ -22,6 +22,18 @@ class Person < ActiveRecord::Base
   validates :lastname, :firstname, :birthday, :sex, presence: true
   validates :lastname, uniqueness: {scope: [:firstname, :secondname, :birthday]}
 
+  def age(d = nil)
+    d ||= Date.today
+    return unless birthday
+    res = d.year - birthday.year
+    res -= 1 if Date.new(d.year, birthday.month, birthday.day) > d
+    res
+  end
+
+  def human_age(d = nil)
+    "#{age(d)} #{RuPropisju.choose_plural(age(d), 'год', 'года', 'лет')}"
+  end
+  
   def get_person
     if !self.student.nil?
       self.student

@@ -59,5 +59,8 @@
       .form-group
         = f.label :note
         = f.text_area :note, class: 'form-control'
+  .form-group
+    =f.label :files
+    =f.file_field :files, multiple: true
   .form-actions
     = f.submit nil, class: 'btn btn-primary'

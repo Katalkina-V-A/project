@@ -1,0 +1,21 @@
+.list-group-item{class: tenant.checkoutdate<Date.today ? "list-group-item-danger" : (tenant.checkoutdate-Date.today<=7 ? "list-group-item-warning" : nil)}
+  =link_to tenant.resident.person do
+    .media
+      -if tenant.avatar?
+        .media-left=image_tag tenant.avatar.url(:thumb), alt: tenant.user.email, class: 'media-object'
+      .media-body
+        %h5.media-heading
+          =tenant.resident.person.lastname
+          =tenant.resident.person.firstname
+          =tenant.resident.person.secondname
+        %span.text-muted
+          %i=tenant.check_date_move
+      -# .media-right{style: "vertical-align: middle;"}
+      -#   .list-label.primary
+      -#     = tenant.check_resident_type
+      -#     -if tenant.historymoves.any?
+      -#       =tenant.historymoves.last.room.numb
+      -#   .clearfix
+      -#   .list-label.primary
+      -#     =tenant.resident_id
+      -#   .clearfix

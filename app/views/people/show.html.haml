@@ -1,5 +1,130 @@
 .page-header
-  %h1
+  %h3
     =@person.lastname
+    =@person.firstname
+    =@person.secondname
 -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?) || @current_user.try(:is_matron?)
   =render 'menu'
+.row
+  .col-md-4
+    .well
+      -if @person.get_person.tenant.avatar?
+        =image_tag @person.get_person.tenant.avatar.url(:large), alt: @person.firstname, class: 'img-responsive'
+      =link_to nil, class: 'btn btn-primary btn-block btn-avatar' do
+        =fa_icon 'edit'
+        Изменить фотографию
+    -if @person.get_person.tenant.historymoves.any?
+      %h4 История переездов
+      %hr
+      .list-group
+        -@person.get_person.tenant.historymoves.each do |room|
+          =link_to room.room, class: "list-group-item #{@person.get_person.tenant.historymoves.last == room ? nil : "disabled"}" do
+            .list-group-item-heading
+              Квартира
+              =room.room.numb
+              =surround ?(,?) do
+                корпус
+                =room.room.building.numb
+            .list-group-item-text
+              %span.text-muted
+                %i
+                  =l(room.datein)
+                  -if !room.dateout.nil?
+                    = " ― " + l(room.dateout)
+    -if @person.get_person.tenant.linenattenants.any?
+      %h4 Закрепленное белье
+      %hr
+      .list-group
+        -@person.get_person.tenant.linenattenants.each do |linen|
+          =link_to linen.linen, class: "list-group-item" do
+            .list-group-item-heading
+              =linen.linen.name
+              %span.text-muted{style: "position: absolute; right: 15px;"}
+                %i=linen.human_quantity(linen.quantity)
+  .col-md-8
+    .well
+      %blockquote Информация об обучающемся
+      .info-tenant
+        %b Факультет Кибернетики и информационной безопасности
+        -# =Student::FACULTIES[@person.get_person.faculty][0]
+        %br
+        Направление подготовки:
+        %br
+        %span.text-muted
+          %i
+            %b 09.03.02
+            Информационные системы и технологии
+            =surround ?(,?) do
+              =Student::TYPEGROUPS[@person.get_person.typegroup][0]
+        %br
+        Группа:
+        %i.text-muted
+          =@person.get_person.group
+          =surround ?(,?) do
+            =@person.get_person.course
+            курс
+        %br
+        Срок обучения:
+        %i.text-muted
+          =l(@person.get_person.receiptdate, format: :long) + " ― "
+          =l(@person.get_person.expirationdate, format: :long)
+        %br
+      %blockquote Информация о жильце:
+      -if @person.birthday
+        Дата рождения:
+        %i.text-muted
+          =l(@person.birthday, format: :long)
+          =surround ?(,?) do
+            =@person.human_age
+      %br
+      Телефон:
+      %i.text-muted
+        =@person.get_person.tenant.phone
+      %br
+      Общежитие предоставляется с
+      %i.text-muted
+        =l(@person.get_person.tenant.arrivaldate, format: :long)
+      по
+      %i.text-muted
+        =l(@person.get_person.tenant.checkoutdate, format: :long)
+      %br
+      Примечание:
+      %i.text-muted
+        очень хочет диплом
+    %h4 Посетители
+    %hr
+    -if @person.get_person.tenant.visitortenants.any?
+      -if @person.get_person.tenant.visitortenants.where(arrivaldate: Date.today).any?
+        .list-group
+          -@person.get_person.tenant.visitortenants.where(arrivaldate: Date.today).each do |visitor|
+            .list-group-item{class: visitor.leavetime.nil? ? (Time.now.to_i >= Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i ? "list-group-item-danger" : (Time.now.to_i + 1.hour.to_i > Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i ? "list-group-item-warning" : nil)) : nil}
+              .list-group-item-heading
+                =visitor.visitor.person.lastname
+                =visitor.visitor.person.firstname
+                =visitor.visitor.person.secondname
+                %span.text-muted{style: "position: absolute; right: 15px;"}
+                  %i=l(visitor.arrivaldate, format: :long)
+              .list-group-item-text
+                %i.text-muted
+                  -if visitor.leavetime.nil?
+                    -if Time.now.to_i >= Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i
+                      Часы посещения закончены!
+                    -elsif Time.now.to_i + 1.hour.to_i > Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i
+                      Время посещений подходит к концу
+                    %span{style: "position: absolute; right: 15px;"}
+                      =l(visitor.arrivaltime, format: :time)
+                  -else
+                    %div{style: "position: relative; text-align: right;"}
+                      =l(visitor.arrivaltime, format: :time)
+                      -if !visitor.leavetime.nil?
+                        = " ― " + l(visitor.leavetime, format: :time)
+      -else
+        .alert.alert-info
+          Сегодня посетителей нет
+      -if @person.get_person.tenant.visitortenants.where("arrivaldate < (:q)", q: Date.today).any?
+        .list-group
+          =link_to visitors_path, class: 'list-group-item' do
+            Просмотреть посетителей
+    -else
+      .alert.alert-info
+        Посетителей не найдено

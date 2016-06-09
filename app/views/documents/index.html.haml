@@ -1,5 +1,5 @@
 .page-header
-  %h1 Документы
+  %h3 Документы
 -if @current_user.try(:is_admin?)
   .btn-toolbar
     =link_to new_document_path, class: 'btn btn-primary' do

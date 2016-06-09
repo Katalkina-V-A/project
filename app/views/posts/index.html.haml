@@ -1,10 +1,16 @@
 .page-header
-  %h1 Новости
+  %h3 Новости
 -if @current_user.try(:is_admin?)
   .btn-toolbar
     =link_to new_post_path, class: 'btn btn-primary' do
       =fa_icon 'plus'
-      Добавить
+      Добавить новость
+= form_tag(posts_path, :method => "get") do
+  .form-group
+    .input-group
+      = text_field_tag :search, params[:search], placeholder: "Поиск", class: 'form-control'
+      .input-group-btn
+        = submit_tag 'Поиск', class: 'btn btn-primary'
 -if @posts.blank?
   .alert.alert-info Новостей не найдено
 -else
@@ -22,13 +28,13 @@
       .panel-body
         -if post.body.present?
           =post.body
+        -if post.pictures.present?
+          -if post.pictures.count == 1
+            %a{:href => post.pictures.last.image.url}
+              =image_tag(post.pictures.last.image.url(:medium), alt: post.pictures.last.title, class: 'img-responsive')
+
 
       -if post.document.present?
         .panel-footer
           =link_to_attachment post.document
   =paginate @posts
-  -# -if post.attachments.present?
-  -#   %ul.list-inline
-  -#     -post.attachments.each do |attachment|
-  -#       %li
-  -#         =link_to_attachment attachment

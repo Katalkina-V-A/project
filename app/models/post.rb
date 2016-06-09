@@ -19,4 +19,8 @@ class Post < ActiveRecord::Base
     self.build_document(doc: val, title: self.title)
   end
   scope :ordering, ->{order(updated_at: :desc)}
+
+  def self.search(search)
+    where("upper(title) like upper(:q) or upper(body) like upper(:q)", q: "%#{search}%")
+  end
 end

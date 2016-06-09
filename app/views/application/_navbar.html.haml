@@ -92,10 +92,12 @@
               Заявки
               -if @current_user.try(:is_tenant?)
                 %span.badge
-                  100
+                  1
               -elsif @current_user.try(:is_admin?)
-                %span.badge
-                  =Request.where(status: 0).count
+                -val = Request.where(status: 0).count
+                -if val !=0
+                  %span.badge
+                    =val
               -else
                 -val = Request.where(employee: @current_user.client).where(status: 0).count
                 -if val !=0

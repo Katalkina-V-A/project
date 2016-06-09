@@ -81,6 +81,6 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:building_id, :numb, :floor, :section, :place,
       :typeroom, :state, :fire, :signal, :samospas, :accessory, :accessoryfaculty,
-      :note, furnitureinrooms_attributes: [:id, :_destroy, :room_id, :quantity, :furniture_id])
+      :note, furnitureinrooms_attributes: [:id, :_destroy, :room_id, :quantity, :furniture_id], files: [])
     end
 end

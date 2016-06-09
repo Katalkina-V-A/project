@@ -1,8 +1,10 @@
 class Building < ActiveRecord::Base
   before_validation :prepare_typebuild
   has_many :rooms, dependent: :destroy
+
   has_many :pictures, as: :imageable
   accepts_nested_attributes_for :pictures
+
   has_many :buildingemployees, dependent: :destroy
   has_many :employees, through: :buildingemployees
 

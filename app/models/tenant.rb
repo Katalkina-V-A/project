@@ -36,9 +36,12 @@ class Tenant < ActiveRecord::Base
   def check_date_move
     if self.checkoutdate<Date.today
       "Срок договора истек"
-    elsif self.checkoutdate-Date.today<=3
-      "Срок договора истекает через #{(self.checkoutdate-Date.today).to_i} дня"
+    elsif self.checkoutdate-Date.today<=7
+      "Срок договора истекает через #{self.human_day((self.checkoutdate-Date.today).to_i)}"
     end
+  end
+  def human_day(d = nil)
+    "#{d} #{RuPropisju.choose_plural(d, 'день', 'дня', 'дней')}"
   end
   def check_resident_type
     if self.resident_type == 'Student'

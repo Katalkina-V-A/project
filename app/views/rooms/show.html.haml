@@ -1,17 +1,70 @@
 .page-header
-  %h1
+  %h3
+    Квартира №
     =@room.numb
-    %span.text-muted
-      =@room.building.name
+    %small
+      %i
+        =surround ?(,?) do
+          =@room.building.name
 -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
   =render 'menu'
 
 .row
-  .col-md-4
-    =Room.human_attribute_name(:floor)
-    =@room.floor
--if @room.furnitureinrooms
-  .list-group
-    -@room.furnitureinrooms.each do |furnitureinroom|
-      =link_to furnitureinroom.furniture, class: 'list-group-item' do
-        =furnitureinroom.furniture.name
+  .col-md-5
+    .well
+      %blockquote Информация о квартире
+      Этаж:
+      %i.text-muted
+        =@room.floor
+        =surround ?(,?) do
+          cекция:
+          =@room.section
+      %br
+      Тип квартиры:
+      %i.text-muted
+        =Room::TYPEROOMS[@room.typeroom][0]
+      %br
+      Состояние:
+      %i.text-muted
+        =Room::STATES[@room.state][0]
+      %br
+      Наличие огнетушителя:
+      %i.text-muted
+        есть
+      %br
+      Наличие противопожарной сигнализации:
+      %i.text-muted
+        есть
+      %br
+      Расчитана на
+      %i.text-muted
+        =@room.human_place(@room.place)
+      %br
+      Примечание:
+      %i.text-muted
+        =@room.note
+    %h4 Закрепленная мебель
+    %hr
+    -if @room.furnitureinrooms
+      .list-group
+        -@room.furnitureinrooms.ordering.each do |furnitureinroom|
+          =link_to furnitureinroom.furniture, class: 'list-group-item' do
+            .list-group-item-heading
+              =furnitureinroom.furniture.name
+              %span.text-muted{style: "position: absolute; right: 15px;"}
+                %i=furnitureinroom.human_quantity(furnitureinroom.quantity)
+  .col-md-7
+    =render 'needfurniture'
+    %h4 Проживающие
+    %hr
+    .list-group
+      -@room.tenants.group_by{|t| t.resident.person.lastname[0]}.sort.each do |char, tenant_array|
+        -tenant_array.each do |tenant|
+          =render 'tenants/tenant', tenant: tenant
+%h4 Фотогалерея
+%hr
+.row
+  -@room.pictures.each do |picture|
+    .col-md-3
+      %a{:href => picture.image.url}
+        =image_tag(picture.image.url(:medium), alt: picture.title, class: 'img-responsive')
