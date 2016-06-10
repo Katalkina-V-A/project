@@ -45,13 +45,13 @@ class Tenant < ActiveRecord::Base
   end
   def check_resident_type
     if self.resident_type == 'Student'
-      "О"
+      "студент"
     elsif self.resident_type == "Workman"
-      "С"
+      "сотрудник"
     elsif self.resident_type == "Guest"
-      "Г"
+      "гость"
     elsif self.resident_type == "Relative"
-      "Р"
+      "родственник"
     end
   end
   def self.niceselect(tenant)

@@ -24,7 +24,6 @@
     -Tenant.includes(resident: [:person]).map{|t| t.resident.person.lastname[0]}.uniq.sort.each do |i|
       %li
         =link_to i[0], tenants_path(char: i[0]) , data: {method: :get}
-        -# countrysearch_index_path(search: i[0])
   .list-group
     -@tenants.each do |char, tenant_array|
       -tenant_array.each do |tenant|

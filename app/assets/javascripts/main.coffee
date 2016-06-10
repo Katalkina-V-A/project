@@ -22,7 +22,6 @@ selectactive = ->
 $(document).ready selectactive
 $(document).on 'page:load', selectactive
 
-
 dtpick = ->
   $('.datepicker').datetimepicker({locale: 'ru', format: 'DD.MM.YYYY'})
   $('.timepicker').datetimepicker({locale: 'ru', format: 'HH:mm'})
@@ -35,9 +34,11 @@ ready = ->
 $(document).ready ready
 $(document).on 'page:load', ready
 
-# $(document).ready(carousel()
-#   $('#slide-images .carousel-inner > .item:first').addClass('active')
-# )
+tool = ->
+  $('[data-toggle="tooltip"]').tooltip()
+$(document).ready tool
+$(document).on 'page:load', tool
+
 carous = ->
   $('#slide-images').carousel()
 $(document).ready carous

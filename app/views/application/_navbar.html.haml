@@ -94,6 +94,8 @@
                 %span.badge
                   1
               -elsif @current_user.try(:is_admin?)
+                %span.badge
+                  2
                 -val = Request.where(status: 0).count
                 -if val !=0
                   %span.badge

@@ -2,10 +2,9 @@
   %h3
     Квартира №
     =@room.numb
-    %small
-      %i
-        =surround ?(,?) do
-          =@room.building.name
+    %i.text-muted{style: "font-size: 80%;"}
+      =surround ?(,?) do
+        =link_to "Корпус #{@room.building.numb}", @room.building
 -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
   =render 'menu'
 
@@ -58,7 +57,7 @@
     %h4 Проживающие
     %hr
     .list-group
-      -@room.tenants.group_by{|t| t.resident.person.lastname[0]}.sort.each do |char, tenant_array|
+      -@room.tenants.joins(:historymoves).where("historymoves.room_id = (:q) and historymoves.dateout is null", q: @room.id).uniq.group_by{|t| t.resident.person.lastname[0]}.sort.each do |char, tenant_array|
         -tenant_array.each do |tenant|
           =render 'tenants/tenant', tenant: tenant
 %h4 Фотогалерея

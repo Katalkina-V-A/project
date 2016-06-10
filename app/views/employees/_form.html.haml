@@ -1,14 +1,14 @@
 = form_for @employee do |f|
   =error_messages_for @employee
-  .row
-    .col-md-6
-      .form-group
-        =f.label :avatar
-        =f.file_field :avatar
-      -if @employee.avatar?
-        .text-center
-          =link_to @employee.avatar.url do
-            =image_tag @employee.avatar.url(:thumb), alt: Employee.human_attribute_name(:avatar)
+  -# .row
+  -#   .col-md-6
+  -#     .form-group
+  -#       =f.label :avatar
+  -#       =f.file_field :avatar
+  -#     -if @employee.avatar?
+  -#       .text-center
+  -#         =link_to @employee.avatar.url do
+  -#           =image_tag @employee.avatar.url(:thumb), alt: Employee.human_attribute_name(:avatar)
   =f.fields_for :user do |u|
     .row
       .col-md-6
@@ -16,6 +16,14 @@
           = u.label :email
           = u.text_field :email, class: 'form-control'
           = u.error_messages_for(:email)
+      .col-md-6
+        .form-group
+          =label_tag("Пользовательское имя")
+          =text_field_tag :login, params[:login], class: 'form-control'
+    .row
+      .col-md-6
+        .form-group
+          =submit_tag "Получить логин", class: 'btn btn-primary'
       -# .col-md-6
       -#   .form-group
       -#     = u.label :role

@@ -25,7 +25,7 @@ hr
 
 .pagination
   margin-top: 10px
-  margin-bottom: 10px
+  margin-bottom: 6px
 .carousel
   width: 300px
 .well
@@ -37,14 +37,27 @@ hr
 
 .list-label
   display: inline-block
-  padding: 4px
-  min-width: 20px
+  min-width: inherit
+  padding: 3px 5px
+  margin: auto 3px
   text-align: center
   font-weight: bold
+  border-radius: 2px
   &.primary
-    background-color: $brand-primary
-    color: #fff
-
+    background-color: lighten($brand-primary, 20%)
+    color: $bg-color
+  &.success
+    background-color: lighten($brand-success, 13%)
+    color: $bg-color
+  &.warning
+    background-color: $brand-warning
+    color: $bg-color
+  &.danger
+    background-color: lighten($brand-danger, 25%)
+    color: $bg-color
+.media-right
+  min-width: 200px
+  vertical-align: middle
 .panel-body ul
   margin-bottom: 0
 .info-tenant
@@ -58,3 +71,11 @@ hr
   &:hover
     background-color: $hover-bar
     color: $color-text
+.timepicker .dropdown-menu
+  max-width: 50px
+  max-height: 100px
+.timepicker .dropdown-menu table
+  max-width: 50px
+  max-height: 100px
+.breadcrumb
+  background-color: darken($bg-color, 5%)

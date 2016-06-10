@@ -144,7 +144,7 @@ ru:
         resident_id: Тип жильца
         resident_type: Тип жильца
       user: &user
-        email: Пользовательское имя/электронная почта
+        email: Электронная почта
         role: Роль
         password: Пароль
         password_confirmation: Подтвердите пароль

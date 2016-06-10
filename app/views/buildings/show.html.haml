@@ -44,17 +44,7 @@
     %hr
     .list-group
       -@building.employees.each do |employee|
-        =link_to employee, class: 'list-group-item' do
-          .media
-            -if employee.avatar?
-              .media-left=image_tag employee.avatar.url(:thumb), alt: employee.user.email, class: 'media-object'
-            .media-body
-              %h5.media-heading
-                =employee.person.lastname
-                =employee.person.firstname
-                =employee.person.secondname
-              %span.text-muted
-                %i=employee.buildingemployees.first.post
+        =render 'employees/employee', employee: employee
 %h4 Фотогалерея
 %hr
 .row

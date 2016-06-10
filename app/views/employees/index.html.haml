@@ -30,9 +30,4 @@
     %hr
     .list-group
       -employee_array.each do |employee|
-        =link_to employee.employee, class: 'list-group-item' do
-          .row
-            .col-md-8
-              =employee.employee.person.lastname
-              .text-muted
-                =employee.post
+        =render employee.employee

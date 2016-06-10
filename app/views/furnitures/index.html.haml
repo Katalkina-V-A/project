@@ -1,5 +1,5 @@
 .page-header
-  %h1 Мебель
+  %h3 Мебель
 -if @current_user.try(:is_admin?) || @current_user.try(:is_commandant?)
   .btn-toolbar
     =link_to new_furniture_path, class: 'btn btn-primary' do
@@ -8,14 +8,27 @@
 -if @furnitures.blank?
   .alert.alert-info Мебель не найдена
 -else
-  .list-group
-    -@furnitures.each do |furniture|
-      =link_to furniture, class: 'list-group-item' do
-        .row
-          .col-md-8
-            =furniture.name
-          .col-md-4
-            .progress.progress-striped
-              .progress-bar{:style => "width: 20%;"}
-                %span.sr-only Доступно: 20/100
-  =paginate @furnitures
+  -buildings = Building.ordering
+  -@furnitures.each do |building, furniture_array|
+    %h4
+      Корпус
+      = buildings.where(id: building).first.numb
+      %i.text-muted
+        =surround ?(,?) do
+          = buildings.where(id: building).first.address
+    %hr
+    .list-group
+      -furniture_array.each do |furniture|
+        -quan = Furnitureinroom.where(furniture_id: furniture.id).sum(:quantity)
+        -val = quan*100/furniture.quantity
+        =link_to furniture,{class: val<75 ? "list-group-item" : (val>=90 ? "list-group-item list-group-item-danger" : "list-group-item list-group-item-warning")} do
+          =furniture.name
+          .progress{style: "width: 200px; float:right; margin-bottom: 0;"}
+            .progress-bar{class: val<75 ? "progress-bar-success" : (val>=90 ? "progress-bar-danger" : "progress-bar-warning"),style: "width: #{val}%;"}
+            %span.sr-only
+              Выдано
+              =(val/100*furniture.quantity).to_s + " / " + furniture.quantity.to_s
+          %span.text-muted{style: "float: right; margin-right: 10px;"}
+            %i
+              Выдано:
+              =quan.to_s + " / " + furniture.quantity.to_s

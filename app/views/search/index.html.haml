@@ -1,34 +1,32 @@
 .page-header
-  %h3 Расширенный поиск
-.panel.panel-default
-  .panel-body
-    =form_tag(search_path, method: :get) do
-      .input-group
-        .row
-          .col-md-12
-            .form-group
-              =select_tag(:building, options_for_select(Building.ordering.map{|b| [b.name, b.id]}), class: 'form-control selectpicker')
-        .row
-          .col-md-4
-            .form-group
-              =text_field_tag :lastname, params[:lastname], placeholder: 'Фамилия', class: 'form-control'
-          .col-md-4
-            .form-group
-              =text_field_tag :firstname, params[:firstname], placeholder: 'Имя', class: 'form-control'
-          .col-md-4
-            .form-group
-              =text_field_tag :secondname, params[:secondname], placeholder: 'Отчество', class: 'form-control'
-        .row
-          .col-md-4
-            .form-group
-              =text_field_tag :post, params[:post], placeholder: 'Должность', class: 'form-control'
-          .col-md-4
-            .form-group
-              =text_field_tag :cabinet, params[:cabinet], placeholder: 'Кабинет', class: 'form-control'
-          .col-md-4
-            .form-group
-              =text_field_tag :phone, params[:phone], placeholder: "Телефон", class: 'form-control'
-        .row
+  %h3 Сотрудники
+%ol.breadcrumb
+  %li=link_to 'Сотрудники', employees_path
+  %li.active Расширенный поиск
+=form_tag(search_path, method: :get) do
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-md-3
           .form-group
-            .input-group-btn
-              =submit_tag 'Искать', class: 'btn btn-primary'
+            =label_tag("Фамилия")
+            =text_field_tag :lastname, params[:lastname], placeholder: 'Фамилия', class: 'form-control'
+        .col-md-3
+          .form-group
+            =label_tag("Имя")
+            =text_field_tag :firstname, params[:firstname], placeholder: 'Имя', class: 'form-control'
+        .col-md-3
+          .form-group
+            =label_tag("Отчество")
+            =text_field_tag :secondname, params[:secondname], placeholder: 'Отчество', class: 'form-control'
+        .col-md-3
+          .form-group
+            =label_tag("Должность")
+            =text_field_tag :post, params[:post], placeholder: 'Должность', class: 'form-control'
+      .form-actions.pull-right
+        =submit_tag 'Поиск', class: 'btn btn-primary'
+-if @employees != nil
+  -if @employees.any?
+    .list-group
+      -@employees.each do |employee|
+        =render 'employees/employee', employee: employee

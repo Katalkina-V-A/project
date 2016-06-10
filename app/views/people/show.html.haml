@@ -87,17 +87,17 @@
       по
       %i.text-muted
         =l(@person.get_person.tenant.checkoutdate, format: :long)
-      %br
-      Примечание:
-      %i.text-muted
-        очень хочет диплом
+      -# %br
+      -# Примечание:
+      -# %i.text-muted
+      -#   очень хочет диплом
     %h4 Посетители
     %hr
     -if @person.get_person.tenant.visitortenants.any?
       -if @person.get_person.tenant.visitortenants.where(arrivaldate: Date.today).any?
         .list-group
           -@person.get_person.tenant.visitortenants.where(arrivaldate: Date.today).each do |visitor|
-            .list-group-item{class: visitor.leavetime.nil? ? (Time.now.to_i >= Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i ? "list-group-item-danger" : (Time.now.to_i + 1.hour.to_i > Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i ? "list-group-item-warning" : nil)) : nil}
+            .list-group-item{class: visitor.leavetime.nil? ? (Time.now.to_i >= Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i ? "list-group-item-danger" : (Time.now.to_i + 10.hour.to_i > Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i ? "list-group-item-warning" : nil)) : nil}
               .list-group-item-heading
                 =visitor.visitor.person.lastname
                 =visitor.visitor.person.firstname
@@ -109,7 +109,7 @@
                   -if visitor.leavetime.nil?
                     -if Time.now.to_i >= Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i
                       Часы посещения закончены!
-                    -elsif Time.now.to_i + 1.hour.to_i > Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i
+                    -elsif Time.now.to_i + 10.hour.to_i > Time.new(Date.today.year, Date.today.month, Date.today.day, 23,0,0).to_i
                       Время посещений подходит к концу
                     %span{style: "position: absolute; right: 15px;"}
                       =l(visitor.arrivaltime, format: :time)
@@ -122,9 +122,8 @@
         .alert.alert-info
           Сегодня посетителей нет
       -if @person.get_person.tenant.visitortenants.where("arrivaldate < (:q)", q: Date.today).any?
-        .list-group
-          =link_to visitors_path, class: 'list-group-item' do
-            Просмотреть посетителей
+        =link_to visitors_path, class: 'list-group-item' do
+          Просмотреть историю посещений
     -else
       .alert.alert-info
         Посетителей не найдено

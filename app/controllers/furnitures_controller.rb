@@ -11,7 +11,7 @@ class FurnituresController < ApplicationController
       array = @current_user.client.buildings.ids
       @furnitures = Furniture.where(building_id: array).order(:building_id).ordering.page(params[:page])
     elsif @current_user.try(:is_admin?)
-      @furnitures = Furniture.ordering.page(params[:page])
+      @furnitures = Furniture.order(:name).group_by{|f| f.building_id}
     end
   end
 
