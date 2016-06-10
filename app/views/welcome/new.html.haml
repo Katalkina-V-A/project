@@ -1,7 +1,8 @@
 .page-header
   %h1
-    Вход в 
+    Вход в
     = t('app.name')
-
-= render 'form'
-
+.col-md-6
+  .row
+    .well{style: "margin-top: 30px;"}
+      = render 'form'
