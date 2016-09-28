@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class User - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-edit_level_eight-3F">::edit_level_eight?</a>
+    
+    <li ><a href="#method-c-edit_level_five-3F">::edit_level_five?</a>
+    
+    <li ><a href="#method-c-edit_level_four-3F">::edit_level_four?</a>
+    
+    <li ><a href="#method-c-edit_level_one-3F">::edit_level_one?</a>
+    
+    <li ><a href="#method-c-edit_level_seven-3F">::edit_level_seven?</a>
+    
+    <li ><a href="#method-c-edit_level_six-3F">::edit_level_six?</a>
+    
+    <li ><a href="#method-c-edit_level_three-3F">::edit_level_three?</a>
+    
+    <li ><a href="#method-c-edit_level_two-3F">::edit_level_two?</a>
+    
+    <li ><a href="#method-c-edit_reader-3F">::edit_reader?</a>
+    
+    <li ><a href="#method-c-edit_tenant-3F">::edit_tenant?</a>
+    
+    <li ><a href="#method-i-is_admin-3F">#is_admin?</a>
+    
+    <li ><a href="#method-i-is_commandant-3F">#is_commandant?</a>
+    
+    <li ><a href="#method-i-is_matron-3F">#is_matron?</a>
+    
+    <li ><a href="#method-i-is_security-3F">#is_security?</a>
+    
+    <li ><a href="#method-i-is_tenant-3F">#is_tenant?</a>
+    
+    <li ><a href="#method-i-role_name">#role_name</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-User">
+  <h1 id="class-User" class="class">
+    class User
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="ROLES">ROLES
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-edit_level_eight-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_eight?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_eight-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_eight?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_matron?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_commandant?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_five-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_five?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_five-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_five?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-operator">!</span><span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_tenant?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_four-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_four?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_four-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_four?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_matron?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_one-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_one?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_one-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_one?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_tenant?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_commandant?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_seven-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_seven?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_seven-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_seven?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_security?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_six-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_six?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_six-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_six?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-operator">!</span><span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_matron?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_three-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_three?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_three-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_three?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_tenant?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_matron?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_level_two-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_level_two?</span><span
+            class="method-args">(u)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_level_two-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_level_two?</span>(<span class="ruby-identifier">u</span>)
+  <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_commandant?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_reader-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_reader?</span><span
+            class="method-args">(user, request)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_reader-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_reader?</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">request</span>)
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">client</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">employee</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">client</span>.<span class="ruby-identifier">historymoves</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">historymove</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-edit_tenant-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit_tenant?</span><span
+            class="method-args">(user, person, room)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="edit_tenant-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">edit_tenant?</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">person</span>, <span class="ruby-identifier">room</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">person</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_tenant?</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">client</span>.<span class="ruby-identifier">resident</span>.<span class="ruby-identifier">person</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">person</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_matron?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_commandant?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_security?</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_tenant?</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">user</span>.<span class="ruby-identifier">client</span>.<span class="ruby-identifier">historymoves</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">room</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">room</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_matron?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_admin?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_commandant?</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:is_security?</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-is_admin-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_admin?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_admin-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_admin?</span>()
+  <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">4</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_commandant-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_commandant?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_commandant-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_commandant?</span>()
+  <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_matron-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_matron?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_matron-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_matron?</span>()
+  <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_security-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_security?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_security-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_security?</span>()
+  <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">3</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_tenant-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_tenant?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_tenant-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_tenant?</span>()
+  <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-role_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">role_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="role_name-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">role_name</span>
+  <span class="ruby-identifier">role</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">ROLES</span>[<span class="ruby-identifier">role</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

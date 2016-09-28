@@ -1,5 +1,5 @@
 .page-header
-  %h1
+  %h3
     =@employee.person.lastname
     =@employee.person.firstname
     =@employee.person.secondname
@@ -8,4 +8,19 @@
 
 .row
   .col-md-4
-    =@employee.person.sex
+    .well
+      -if @employee.avatar?
+        =image_tag @employee.avatar.url(:large), alt: @employee.person.firstname, class: 'img-responsive'
+      =link_to nil, class: 'btn btn-primary btn-block btn-avatar' do
+        =fa_icon 'edit'
+        Изменить фотографию
+  .col-md-8
+    .well
+      %blockquote Информация о сотруднике
+
+      -if @employee.person.birthday
+        Дата рождения:
+        %i.text-muted
+          =l(@employee.person.birthday, format: :long)
+          =surround ?(,?) do
+            =@employee.person.human_age
